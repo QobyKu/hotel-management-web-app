@@ -1,5 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import CustomerBooking from './Components/CustomerBooking';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const routing = (
+    <Router>
+      <div>
+        <Route path="/dashboard" component={CustomerBooking} />
+      </div>
+    </Router>
+  )
+  ReactDOM.render(routing, document.getElementById('root'))
