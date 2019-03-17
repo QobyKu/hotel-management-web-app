@@ -1,7 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import ButtonAppBar from './ButtonAppBar';
-import '../css/CustomerBooking.css'
+import Button from '@material-ui/core/Button';
+import '../css/CustomerBooking.css';
+import { Link } from 'react-router-dom';
 
 class Booking extends React.Component {
   state = {
@@ -13,12 +15,12 @@ class Booking extends React.Component {
   render() {
     return (
       <div>
-        <ButtonAppBar /> 
-        <div class="imgContainer">
+        <ButtonAppBar />
+        <div className="imgContainer">
           {/* nice image goes here */}
           <img alt="Vancouver" src="https://stmed.net/sites/default/files/vancouver-wallpapers-28962-2594432.jpg" />
         </div>
-        <div class="bookingUserInterface">
+        <div className="bookingUserInterface">
           <h1> Please select your booking dates</h1>
           <TextField
             id="sDate"
@@ -41,7 +43,12 @@ class Booking extends React.Component {
             label="Number of People"
             type="number"
           />
-          
+          <Link to="/roomLister">
+          <Button variant="contained" size="large" color="primary">
+            Search
+        </Button>
+        </Link>
+
         </div>
       </div>
     )
