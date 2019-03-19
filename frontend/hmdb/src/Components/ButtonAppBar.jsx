@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
   root: {
@@ -21,23 +18,67 @@ const styles = {
   },
 };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
+class ButtonAppBar extends React.Component  {
+
+
+  state = {
+
+  }
+
+  componentDidMount(){
+    this.whatToRender();
+  }
+
+  whatToRender = () => {
+    if (this.getStatus()){
+      return(
+        <Toolbar>
+        <Button color="inherit">Dashboard</Button>
+        <Button color="inherit">Menu</Button>
+        <Button color="inherit">Invoices</Button>
+        <Button color="inherit" 
+        onClick = {this.logOut()}
+        style={{
+          position: "absolute",
+          right: 20
+        }}>Logout</Button>
+        <Button color="inherit" 
+        style={{
+          position: "absolute",
+          right: 90
+        }}>Account</Button>
+      </Toolbar>
+      );
+    } else {
+      return (
+        <Toolbar>
+          <Button color="inherit">
+            Login
+          </Button>
+        </Toolbar>
+      );
+    }
+  }
+
+  logOut = () => {
+    localStorage.setItem('logInStatus', false);
+  }
+
+  getStatus = () => {
+    localStorage.setItem('logInStatus', true);
+    return JSON.parse(localStorage.getItem('logInStatus'));
+  }
+
+  render() {
+  const { classes } = this.props;
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Home
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+        {this.whatToRender()}
       </AppBar>
     </div>
   );
+}
 }
 
 ButtonAppBar.propTypes = {

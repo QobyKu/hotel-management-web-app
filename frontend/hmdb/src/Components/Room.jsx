@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
 
 const styles = {
   card: {
@@ -43,9 +44,11 @@ function Room(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <Link to="/orderSummary">
         <Button size="small" color="primary">
           Book
         </Button>
+        </Link>
       </CardActions>
     </Card>
   );
