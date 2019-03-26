@@ -30,6 +30,7 @@ class ButtonAppBar extends React.Component  {
   }
 
   whatToRender = () => {
+    // TODO: make navbar work for different types of users
     if (this.getStatus()){
       return(
         <Toolbar>

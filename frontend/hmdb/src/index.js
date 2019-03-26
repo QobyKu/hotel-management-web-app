@@ -5,6 +5,9 @@ import RoomLister from './Components/RoomLister';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import OrderSummary from './Components/OrderSummary';
 import EmployeeDashboard from './Components/Employee';
+import CustomerInvoices from './Components/CustomerInvoices';
+import EmployeeInvoice from './Components/EmployeeInvoice';
+import Analytics from './Components/Analytics';
 
 const routing = (
     <Router>
@@ -13,6 +16,9 @@ const routing = (
         <Route path="/roomLister" component={RoomLister} />
         <Route path="/orderSummary" component={OrderSummary}/>
         <Route path="/employeeDashboard" component={EmployeeDashboard} />
+        <Route path="/customerInvoices" component={CustomerInvoices} />
+        <Route path="/employeeInvoices" component={EmployeeInvoice} />
+        <Route path="/analytics" component={Analytics} />
       </div>
     </Router>
   )
