@@ -9,9 +9,9 @@ class Booking extends React.Component {
   state = {
     startDate: '',
     endDate: '',
-    numPeople: '',
+    numPeople: 0
   }
-
+  
   render() {
     return (
       <div>
@@ -43,11 +43,12 @@ class Booking extends React.Component {
             label="Number of People"
             type="number"
           />
-          <Link to="/roomLister">
-          <Button variant="contained" size="large" color="primary">
+          <Button variant="contained" size="large" color="primary" >
+           <Link to={{ pathname: '/roomLister', state: this.state }} >
             Search
+          </Link>
         </Button>
-        </Link>
+
 
         </div>
       </div>

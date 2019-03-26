@@ -8,7 +8,7 @@ class RoomLister extends React.Component {
         mockData: true
     }
 
-    selectData = () => {
+    selectData = (x) => {
         if (this.state.mockData) {
             this.setState({
                 roomTypes: [
@@ -33,13 +33,18 @@ class RoomLister extends React.Component {
                 ]
             });
         } else {
-            // API call goes here 
+            // API call goes here + use x
+            // set state 
         }
     }
 
     componentWillMount() {
-        this.selectData();
+        let x = this.props.location.state;
+        console.log(x);
+        this.selectData(x);
     }
+
+
 
     render() {
         return (
