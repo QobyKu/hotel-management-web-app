@@ -32,7 +32,7 @@ class OrderSummary extends React.Component {
                 price: 820
             })
         } else {
-            // todo 
+            // TODO: 
             // API call goes here
         }
     }

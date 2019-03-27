@@ -25,6 +25,7 @@ class EmployeeDashboard extends React.Component {
     }
 
     isDisabled = (isManagerButton) => {
+        // TODO: figure out flow for this
         // get current employee status in info from localStorage
         let currentEmployeeStatus = "employee";
 

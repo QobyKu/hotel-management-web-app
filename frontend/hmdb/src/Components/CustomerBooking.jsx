@@ -6,6 +6,9 @@ import '../css/CustomerBooking.css';
 import { Link } from 'react-router-dom';
 
 class Booking extends React.Component {
+
+  // TODO: store values in state + pass them to next page
+
   state = {
     startDate: '',
     endDate: '',

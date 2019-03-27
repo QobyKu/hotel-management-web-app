@@ -18,6 +18,7 @@ const styles = {
   },
 };
 
+//TODO: add images
 function Room(props) {
   const { classes } = props;
   return (
