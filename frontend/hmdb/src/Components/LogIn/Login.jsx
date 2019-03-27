@@ -88,8 +88,9 @@ class SignIn extends React.Component {
     console.log('sign in');
   }
 
-  printOutput = (evt) =>{
-    console.log('link pressed');
+  setLocalStorageOnLogin = (evt) =>{
+    localStorage.setItem('logInStatus', true);
+    localStorage.setItem('status', 'customer');
   }
 
 
@@ -125,7 +126,7 @@ class SignIn extends React.Component {
               label="Remember me"
             />
 
-          <Link to={{ pathname: '/register', state: this.state }} onClick= {this.printOutput}>
+          <Link to={{ pathname: '/register', state: this.state }} onClick= {this.setLocalStorageOnLogin}>
             <Button
               fullWidth
               variant="outlined"
@@ -135,7 +136,7 @@ class SignIn extends React.Component {
               Register
             </Button>
             </Link>
-            <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.printOutput}>
+            <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.setLocalStorageOnLogin}>
             <Button
               type="submit"
               fullWidth
