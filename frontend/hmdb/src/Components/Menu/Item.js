@@ -8,10 +8,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
+import './item.css';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    width: '250px',
+    float: 'left',
+    margin: '15px',
   },
   media: {
     height: 140,

@@ -1,7 +1,9 @@
 import React from 'react';
 import Room from '../Room';
 import Item from './Item';
-
+import ButtonAppBar from '../ButtonAppBar';
+import './menu.css';
+import Button from '@material-ui/core/Button';
 class RoomLister extends React.Component {
 
     state = {
@@ -27,6 +29,31 @@ class RoomLister extends React.Component {
                         price: 10,
                         service: 'Bar',
                     },
+                    {
+                        name: 'Manicure',
+                        price: 10,
+                        service: 'Salon',
+                    },
+                    {
+                        name: 'Towel',
+                        price: 0,
+                        service: 'Room Service',
+                    },
+                    {
+                        name: 'Burger',
+                        price: 10,
+                        service: 'Restaurant',
+                    },
+                    {
+                        name: 'Pizza',
+                        price: 10,
+                        service: 'Restaurant',
+                    },
+                    {
+                        name: 'Manicure',
+                        price: 10,
+                        service: 'Spa',
+                    },
                 ]
             });
         } else {
@@ -46,6 +73,49 @@ class RoomLister extends React.Component {
     render() {
         return (
             <div>
+                <ButtonAppBar />
+
+            <div className= "buttoncontainer">
+            <Button
+              halfWidth
+              variant="outlined"
+              color="primary"
+              onClick = {this.handleRegister}
+              className = "menubutton">
+              Restaurant
+            </Button><Button
+              halfWidth
+              variant="outlined"
+              color="primary"
+              onClick = {this.handleRegister}
+              className = "menubutton">
+              Room Service
+            </Button><Button
+              halfWidth
+              variant="outlined"
+              color="primary"
+              onClick = {this.handleRegister}
+              className = "menubutton">
+              Spa
+            </Button>
+            <Button
+              halfWidth
+              variant="outlined"
+              color="primary"
+              onClick = {this.handleRegister}
+              className = "menubutton">
+              Bar
+            </Button>
+            <Button
+              halfWidth
+              variant="outlined"
+              color="primary"
+              onClick = {this.handleRegister}
+              className = "menubutton">
+              Casino
+            </Button>
+            </div>
+            <div className="itemcontainer">
                 
                 {
                     this.state.items.map((item, i) => {
@@ -53,10 +123,11 @@ class RoomLister extends React.Component {
                             key={i}
                             name={item.name}
                             price={item.price}
-                            serviceName={item.service}
+                            service={item.service}
                         />
                     })
                 }
+            </div>
             </div>
         );
     }
