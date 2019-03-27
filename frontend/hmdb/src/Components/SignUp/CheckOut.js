@@ -6,7 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';;
+import TextField from '@material-ui/core/TextField';
+import '../LogIn/index.css';
 
 const styles = theme => ({
   appBar: {
@@ -91,6 +92,7 @@ class Checkout extends React.Component {
     const { activeStep } = this.state;
 
     return (
+      <div className='overlay'>
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
@@ -203,6 +205,7 @@ class Checkout extends React.Component {
           </Paper>
         </main>
       </React.Fragment>
+      </div>
     );
   }
 }
