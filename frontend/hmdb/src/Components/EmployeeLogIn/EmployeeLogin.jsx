@@ -64,10 +64,24 @@ var titlestyle = {
 
 
 
+
 class empLogin extends React.Component {
   state = {
     username: '',
     password: ''
+  }
+
+
+  setLocalStorageOnLogin = () =>{
+    console.log('I have been pressed');
+    localStorage.setItem('logInStatus', true);
+    let manager = true;
+    if (manager) {
+      localStorage.setItem('status', 'manager');
+    } else {
+      localStorage.setItem('status', 'employee');
+    }
+
   }
 
   // handleRegister =(evt)=> {

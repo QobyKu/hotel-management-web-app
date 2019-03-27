@@ -88,7 +88,8 @@ class SignIn extends React.Component {
     console.log('sign in');
   }
 
-  setLocalStorageOnLogin = (evt) =>{
+  setLocalStorageOnLogin = () =>{
+    console.log('I have been pressed');
     localStorage.setItem('logInStatus', true);
     localStorage.setItem('status', 'customer');
   }

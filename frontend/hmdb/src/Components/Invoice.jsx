@@ -18,8 +18,8 @@ class Invoice extends React.Component {
     }
 
     renderAdd = () => {
-        let employee = true;
-        if (employee) {
+        let isEmployee = !(localStorage.getItem('status') === "customer")
+        if (isEmployee) {
             return (
                 <div>
                 <SimpleModalWrapped />
