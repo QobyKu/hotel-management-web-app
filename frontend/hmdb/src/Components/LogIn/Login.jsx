@@ -148,6 +148,18 @@ class SignIn extends React.Component {
               Sign in
             </Button>
             </Link>
+            <Link to={{ pathname: '/employeelogin', state: this.state }} onClick= {this.setLocalStorageOnLogin}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="primary"
+              className={classes.submit}
+              onClick={this.handleSignIn}
+            >
+              Employee Log In
+            </Button>
+            </Link>
           </form>
         </Paper>
       </main>

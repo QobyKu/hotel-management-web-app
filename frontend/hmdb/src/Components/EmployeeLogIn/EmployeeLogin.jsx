@@ -124,17 +124,6 @@ class empLogin extends React.Component {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-
-          <Link to={{ pathname: '/register', state: this.state }} onClick= {this.printOutput}>
-            <Button
-              fullWidth
-              variant="outlined"
-              color="primary"
-              className={classes.submit}
-            >
-              Register
-            </Button>
-            </Link>
             <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.printOutput}>
             <Button
               type="submit"
