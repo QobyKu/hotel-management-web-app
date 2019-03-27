@@ -6,8 +6,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ButtonAppBar from './ButtonAppBar';
 import RoomPriceModalWrapped from './RoomPriceModal';
+import EmployeeAppBar from './EmployeeAppBar';
 
 const styles = theme => ({
     root: {
@@ -54,7 +54,7 @@ class EditMenuPrice extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <ButtonAppBar />
+                <EmployeeAppBar />
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>

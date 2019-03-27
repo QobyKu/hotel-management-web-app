@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
+import EmployeeAppBar from '../EmployeeAppBar';
 
 const styles = theme => ({
   appBar: {
@@ -108,6 +109,7 @@ class Account extends React.Component {
 
     return (
       <div className='overlay'>
+      <EmployeeAppBar/>
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>

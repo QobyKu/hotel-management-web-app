@@ -1,5 +1,4 @@
 import React from 'react';
-import Room from '../Room';
 import Item from './Item';
 import ButtonAppBar from '../ButtonAppBar';
 import './menu.css';
