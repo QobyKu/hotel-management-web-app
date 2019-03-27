@@ -15,6 +15,7 @@ import EditRoomPrice from './Components/EditRoomPrice';
 import Account from './Components/Account/Account';
 import Booking from './Components/Booking/Booking';
 import LogIn from './Components/LogIn/Login.jsx';
+import EmployeeLogin from './Components/EmployeeLogIn/EmployeeLogin';
 
 const routing = (
     <Router>
@@ -33,6 +34,7 @@ const routing = (
         <Route path="/editRoom" component={EditRoomPrice} />
         <Route path="/account" component={Account} />
         <Route path="/booking" component={Booking} />
+        <Route path="/employeelogin" component={EmployeeLogin} />
       </div>
     </Router>
   )
