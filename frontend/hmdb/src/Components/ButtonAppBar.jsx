@@ -38,12 +38,12 @@ class ButtonAppBar extends React.Component  {
         <Link to="/dashboard"><Button color="inherit">Dashboard</Button></Link>
         <Link to="/menu"><Button color="inherit">Menu</Button></Link>
         <Link to="/customerInvoices"><Button color="inherit">Invoices</Button></Link>
-        <Button color="inherit" 
+        <Link to="/login"><Button color="inherit" 
         onClick = {this.logOut}
         style={{
           position: "absolute",
           right: 20
-        }}>Logout</Button>
+        }}>Logout</Button></Link>
         <Link to="/account"><Button color="inherit" 
         style={{
           position: "absolute",
@@ -54,9 +54,10 @@ class ButtonAppBar extends React.Component  {
     } else {
       return (
         <Toolbar>
-          <Button color="inherit">
+          <Link to="/login"><Button color="inherit">
             Login
           </Button>
+          </Link>
         </Toolbar>
       );
     }
@@ -65,6 +66,7 @@ class ButtonAppBar extends React.Component  {
   logOut = () => {
     console.log('I have logged out');
     localStorage.setItem('logInStatus', false);
+    localStorage.setItem('status', '');
   }
 
   getStatus = () => {

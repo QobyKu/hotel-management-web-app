@@ -9,7 +9,7 @@ class EmployeeDashboard extends React.Component {
             {
                 label: "Make Booking",
                 manager: false,
-                path: "/"
+                path: "/booking"
             },
             {
                 label: "Invoices",
