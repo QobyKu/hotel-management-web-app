@@ -1,25 +1,35 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 class EmployeeDashboard extends React.Component {
 
     state = {
         buttons: [
-            { 
+            {
+                label: "Make Booking",
+                manager: false,
+                path: "/"
+            },
+            {
                 label: "Invoices",
-                manager: false
+                manager: false,
+                path: "/employeeInvoices"
             },
             {
-                label: "Room Prices",
-                manager: true
+                label: "Edit Room Prices",
+                manager: true,
+                path: "/editRoom"
             },
             {
-                label: "Menu Prices",
-                manager: true
+                label: "Edit Menu Prices",
+                manager: true,
+                path: "/editMenu"
             },
             {
                 label: "Analytics",
-                manager: true
+                manager: true,
+                path: "/analytics"
             }
         ]
     }
@@ -27,27 +37,31 @@ class EmployeeDashboard extends React.Component {
     isDisabled = (isManagerButton) => {
         // TODO: figure out flow for this
         // get current employee status in info from localStorage
-        let currentEmployeeStatus = "employee";
+        let currentEmployeeStatus = "manager";
 
-        if(isManagerButton){
+        if (isManagerButton) {
             return currentEmployeeStatus !== "manager";
         }
 
         return isManagerButton;
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 Employee Dash
-                {this.state.buttons.map( (button, index) => {
+                {this.state.buttons.map((button, index) => {
                     return (
-                    <Button 
-                    color="primary" 
-                    disabled={this.isDisabled(button.manager)}
-                    label={button.label}
-                    key={index}
-                    >{button.label}</Button>
+                        <Link
+                            to={{ pathname: button.path }}
+                        >
+                            <Button
+                                color="primary"
+                                disabled={this.isDisabled(button.manager)}
+                                label={button.label}
+                                key={index}
+                            >{button.label}</Button>
+                        </Link>
                     );
                 })}
             </div>

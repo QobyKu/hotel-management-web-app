@@ -8,6 +8,8 @@ import EmployeeDashboard from './Components/Employee';
 import CustomerInvoices from './Components/CustomerInvoices';
 import EmployeeInvoice from './Components/EmployeeInvoice';
 import Analytics from './Components/Analytics';
+import EditMenuPrice from './Components/EditMenuPrice';
+import EditRoomPrice from './Components/EditRoomPrice';
 
 const routing = (
     <Router>
@@ -19,6 +21,8 @@ const routing = (
         <Route path="/customerInvoices" component={CustomerInvoices} />
         <Route path="/employeeInvoices" component={EmployeeInvoice} />
         <Route path="/analytics" component={Analytics} />
+        <Route path="/editMenu" component={EditMenuPrice} />
+        <Route path="/editRoom" component={EditRoomPrice} />
       </div>
     </Router>
   )
