@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import EmployeeAppBar from './EmployeeAppBar';
 
 class EmployeeDashboard extends React.Component {
 
@@ -49,6 +50,7 @@ class EmployeeDashboard extends React.Component {
     render() {
         return (
             <div>
+                <EmployeeAppBar />
                 Employee Dash
                 {this.state.buttons.map((button, index) => {
                     return (

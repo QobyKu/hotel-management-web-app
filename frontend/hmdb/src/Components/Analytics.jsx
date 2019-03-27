@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonAppBar from './ButtonAppBar';
+import EmployeeAppBar from './EmployeeAppBar';
 
 class Analytics extends React.Component {
 
@@ -38,7 +38,7 @@ class Analytics extends React.Component {
     render() {
         return(
             <div>
-                <ButtonAppBar />
+                <EmployeeAppBar />
                 <h2>Bookings made this month: {this.getBookingsMadeThisMonth()} </h2>
                 <h2>Average invoice amount this month: ${this.getAverageInvoiceAmountThisMonth()}</h2>
                 <h2>Loyal Customers</h2>
