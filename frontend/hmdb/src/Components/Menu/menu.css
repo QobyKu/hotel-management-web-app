@@ -1,0 +1,26 @@
+.itemcontainer {
+    width: 900px;
+    height: 700px;
+    overflow: scroll;
+    float: right;
+    border: 1px solid black;
+    align-content: center;
+    position: absolute;
+    right: 100px;
+    top: 150px;
+}
+
+.item {
+    border: 2px solid black;
+}
+
+.buttoncontainer {
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 200px;
+}
+
+.buttoncontainer .menubutton {
+    margin-top: 10px;
+    width: 200px;
+}

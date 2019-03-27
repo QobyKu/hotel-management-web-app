@@ -8,7 +8,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -33,6 +32,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    backgroundColor: 'white',
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -45,7 +45,17 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
+
+  
+
+  
 });
+
+var titlestyle = {
+  fontSize: '50px',
+  width: '200%',
+  opacity: '0.5',
+}
 
 
 
@@ -75,8 +85,12 @@ class SignIn extends React.Component {
   render (){
     const {classes} = this.props;
     return (
-      <main className={classes.main}>
-      <h1 id='Title'>Lion's Gate Hotel</h1>
+      <div className="overlay"> 
+          
+        <main className={classes.main}>
+      
+      
+      <h1 id='Title' className='title' style = {titlestyle}>Lion's Gate Hotel</h1>
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -118,6 +132,7 @@ class SignIn extends React.Component {
           </form>
         </Paper>
       </main>
+      </div>
     );
   }
 
