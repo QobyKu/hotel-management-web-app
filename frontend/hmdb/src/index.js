@@ -11,6 +11,7 @@ import Menu from './Components/Menu/Menu.js';
 import CustomerInvoices from './Components/CustomerInvoices';
 import EmployeeInvoice from './Components/EmployeeInvoice';
 import Analytics from './Components/Analytics';
+import Account from './Components/Account/Account';
 
 const routing = (
     <Router>
@@ -25,6 +26,7 @@ const routing = (
         <Route path="/customerInvoices" component={CustomerInvoices} />
         <Route path="/employeeInvoices" component={EmployeeInvoice} />
         <Route path="/analytics" component={Analytics} />
+        <Route path="/account" component={Account} />
       </div>
     </Router>
   )

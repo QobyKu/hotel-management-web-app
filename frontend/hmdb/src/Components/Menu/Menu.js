@@ -4,7 +4,7 @@ import Item from './Item';
 import ButtonAppBar from '../ButtonAppBar';
 import './menu.css';
 import Button from '@material-ui/core/Button';
-class RoomLister extends React.Component {
+class Menu extends React.Component {
 
     state = {
         roomTypes: [],
@@ -135,4 +135,4 @@ class RoomLister extends React.Component {
 
 
 
-export default RoomLister;
+export default Menu;

@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-function Room(props) {
+function Item(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
@@ -53,4 +53,4 @@ function Room(props) {
 }
 
 
-export default withStyles(styles)(Room);
+export default withStyles(styles)(Item);
