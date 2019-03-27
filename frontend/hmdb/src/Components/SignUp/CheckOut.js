@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   appBar: {
@@ -57,23 +58,6 @@ class Checkout extends React.Component {
     zip: ''
   };
 
-  handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1,
-    }));
-  };
-
-  handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
-  };
-
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-    });
-  };
 
   updateValue = (evt) =>{
     
@@ -190,6 +174,7 @@ class Checkout extends React.Component {
       </Grid>
     </React.Fragment>
                   <div className={classes.buttons}>
+                  <Link to={{ pathname: '/login', state: this.state }} >
                     <Button
                       variant="contained"
                       color="primary"
@@ -198,6 +183,7 @@ class Checkout extends React.Component {
                     >
                       Create Account
                     </Button>
+                    </Link>
                   </div>
                 </React.Fragment>
               )}

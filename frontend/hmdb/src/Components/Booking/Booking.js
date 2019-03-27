@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
-import ButtonAppBar from '../ButtonAppBar';
 
 const styles = theme => ({
   appBar: {
@@ -48,8 +47,11 @@ const steps = ['Customer Information'];
 
 class Account extends React.Component {
   state = {
-    creditcard: '',
-    password: '',
+    customerid: 0,
+    start: '',
+    end: '',
+    numPeople: 0,
+    roomNumber: 0,
   };
 
   handleNext = () => {
@@ -94,6 +96,10 @@ class Account extends React.Component {
     console.log(this.state);
   }
 
+  createBooking = (evt) =>{
+    console.log(this.state);
+  }
+  
 
 
   render() {
@@ -102,13 +108,12 @@ class Account extends React.Component {
 
     return (
       <div className='overlay'>
-      <ButtonAppBar />
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
-              Change Payment Method
+              Create Booking
             </Typography>
             <React.Fragment>
               {activeStep === steps.length ? (
@@ -124,11 +129,64 @@ class Account extends React.Component {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="creditcard"
-            name="creditcard"
-            label="Credit Card $"
+            id="customerid"
+            name="customerid"
+            label="Customer ID"
             fullWidth
             autoComplete="cc"
+            onChange={this.updateValue}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="roomNumber"
+            name="roomNumber"
+            label="Room Number"
+            fullWidth
+            autoComplete="0"
+            onChange={this.updateValue}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="start"
+            name="start"
+            type="date"
+            label="Start Date"
+            fullWidth
+            autoComplete="cc"
+            onChange={this.updateValue}
+            InputLabelProps={{
+                shrink: true,
+              }}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="end"
+            name="end"
+            type="date"
+            label="End Date"
+            InputLabelProps={{
+                shrink: true,
+              }}
+            fullWidth
+            autoComplete="end"
+            onChange={this.updateValue}
+          />
+        </Grid>
+        
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="numPeople"
+            name="numPeople"
+            label="Numer of People"
+            fullWidth
+            autoComplete="0"
             onChange={this.updateValue}
           />
         </Grid>
@@ -138,61 +196,10 @@ class Account extends React.Component {
                   <Button
                       variant="contained"
                       color="primary"
-                      onClick={this.clearPayment}
+                      onClick={this.createBooking}
                       className={classes.button}
                     >
-                      Clear Payment Method
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.changePayment}
-                      className={classes.button}
-                    >
-                      Change Payment Method
-                    </Button>
-                    
-                  </div>
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          </Paper>
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h4" align="center">
-              Change Password
-            </Typography>
-            <React.Fragment>
-              {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" align="center">
-                    Thank you for your order.
-                  </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <React.Fragment>
-      <Grid container spacing={24}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="password"
-            name="password"
-            label="Password"
-            fullWidth
-            autoComplete="pword"
-            onChange={this.updateValue}
-          />
-        </Grid>
-      </Grid>
-    </React.Fragment>
-                  <div className={classes.buttons}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.changePassword}
-                      className={classes.button}
-                    >
-                      Change Password
+                      Create Booking
                     </Button>
                   </div>
                 </React.Fragment>

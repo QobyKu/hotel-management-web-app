@@ -12,7 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Hotel from '@material-ui/icons/Hotel';
-import './index.css';
+// import './index.css';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   main: {
@@ -45,6 +46,9 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
+  link: {
+    zIndex: '999',
+  }
 
   
 
@@ -66,10 +70,10 @@ class SignIn extends React.Component {
     password: ''
   }
 
-  handleRegister =()=> {
-    console.log(this.state.username);
-    console.log(this.state.password);
-  }
+  // handleRegister =(evt)=> {
+  //   console.log(this.state.username);
+  //   console.log(this.state.password);
+  // }
 
   updateValue = (evt) =>{
     console.log(evt.target.name)
@@ -78,6 +82,14 @@ class SignIn extends React.Component {
     })
     console.log(this.state.username);
     console.log(this.state.password);
+  }
+
+  handleSignIn = (evt) =>{
+    console.log('sign in');
+  }
+
+  printOutput = (evt) =>{
+    console.log('link pressed');
   }
 
 
@@ -112,23 +124,29 @@ class SignIn extends React.Component {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+
+          <Link to={{ pathname: '/register', state: this.state }} onClick= {this.printOutput}>
             <Button
               fullWidth
               variant="outlined"
               color="primary"
-              onClick = {this.handleRegister}
+              className={classes.submit}
             >
               Register
             </Button>
+            </Link>
+            <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.printOutput}>
             <Button
               type="submit"
               fullWidth
               variant="outlined"
               color="primary"
               className={classes.submit}
+              onClick={this.handleSignIn}
             >
               Sign in
             </Button>
+            </Link>
           </form>
         </Paper>
       </main>
