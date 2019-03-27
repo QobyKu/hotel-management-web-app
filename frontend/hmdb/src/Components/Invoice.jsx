@@ -18,7 +18,7 @@ class Invoice extends React.Component {
     }
 
     renderAdd = () => {
-        let employee = false;
+        let employee = true;
         if (employee) {
             return (
                 <div>
@@ -32,7 +32,7 @@ class Invoice extends React.Component {
         // TODO:
         // refresh page
         // API Call
-        this.props.status = "paid";
+        // this.props.status = "paid";
     }
 
     render() {

@@ -14,6 +14,13 @@ class Booking extends React.Component {
     endDate: '',
     numPeople: 0
   }
+
+  handleChange = (event) => {
+    console.log(event.target.value);
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
   
   render() {
     return (
@@ -26,17 +33,19 @@ class Booking extends React.Component {
         <div className="bookingUserInterface">
           <h1> Please select your booking dates</h1>
           <TextField
-            id="sDate"
+            id="startDate"
             label="Start Date"
             type="date"
+            onChange={this.handleChange}
             InputLabelProps={{
               shrink: true,
             }}
           />
           <TextField
-            id="eDate"
+            id="endDate"
             label="End Date"
             type="date"
+            onChange={this.handleChange}
             InputLabelProps={{
               shrink: true,
             }}
@@ -45,6 +54,7 @@ class Booking extends React.Component {
             id="numPeople"
             label="Number of People"
             type="number"
+            onChange={this.handleChange}
           />
           <Button variant="contained" size="large" color="primary" >
            <Link to={{ pathname: '/roomLister', state: this.state }} >

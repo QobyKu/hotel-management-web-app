@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 const styles = {
   root: {
@@ -34,9 +35,9 @@ class ButtonAppBar extends React.Component  {
     if (this.getStatus()){
       return(
         <Toolbar>
-        <Button color="inherit">Dashboard</Button>
-        <Button color="inherit">Menu</Button>
-        <Button color="inherit">Invoices</Button>
+        <Link to="/dashboard"><Button color="inherit">Dashboard</Button></Link>
+        <Link to="/"><Button color="inherit">Menu</Button></Link>
+        <Link to="/customerInvoices"><Button color="inherit">Invoices</Button></Link>
         <Button color="inherit" 
         onClick = {this.logOut()}
         style={{

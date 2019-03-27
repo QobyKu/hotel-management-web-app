@@ -10,6 +10,8 @@ import Menu from './Components/Menu/Menu.js';
 import CustomerInvoices from './Components/CustomerInvoices';
 import EmployeeInvoice from './Components/EmployeeInvoice';
 import Analytics from './Components/Analytics';
+import EditMenuPrice from './Components/EditMenuPrice';
+import EditRoomPrice from './Components/EditRoomPrice';
 import Account from './Components/Account/Account';
 import Booking from './Components/Booking/Booking';
 import LogIn from './Components/LogIn/Login.jsx';
@@ -27,6 +29,8 @@ const routing = (
         <Route path="/customerInvoices" component={CustomerInvoices} />
         <Route path="/employeeInvoices" component={EmployeeInvoice} />
         <Route path="/analytics" component={Analytics} />
+        <Route path="/editMenu" component={EditMenuPrice} />
+        <Route path="/editRoom" component={EditRoomPrice} />
         <Route path="/account" component={Account} />
         <Route path="/booking" component={Booking} />
       </div>
