@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
 import EmployeeAppBar from '../EmployeeAppBar';
+import API_CALL from '../../api_call';
 
 const styles = theme => ({
   appBar: {
@@ -52,8 +53,50 @@ class Account extends React.Component {
     start: '',
     end: '',
     numPeople: 0,
-    roomNumber: 0,
+    roomType: "",
   };
+
+  createInvoice = async () => {
+    let apiCall = API_CALL + 'createInvoice';
+    let rawResponse = await fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "customerId": this.state.customerid,
+        "roomType": this.state.roomType
+      })
+    });
+  
+    let response = rawResponse.json();
+    this.createBooking(response.iid);
+  
+  }
+  
+  // TODO: /getRoomNumber
+  
+  createBooking = async (iid) => {
+    let apiCall = API_CALL + 'makeBooking';
+    let rawResponse = fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "startDate": this.state.start,
+        "endDate": this.state.end,
+        "numPeople": this.state.numPeople,
+        "iid": iid,
+        "cid": this.state.customerid,
+        "roomNumber": 0,
+      })
+    });
+
+    console.log('Booking created!');
+  }
 
   handleNext = () => {
     this.setState(state => ({
@@ -142,9 +185,9 @@ class Account extends React.Component {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="roomNumber"
-            name="roomNumber"
-            label="Room Number"
+            id="roomType"
+            name="roomType"
+            label="Room Type"
             fullWidth
             autoComplete="0"
             onChange={this.updateValue}
@@ -198,7 +241,7 @@ class Account extends React.Component {
                   <Button
                       variant="contained"
                       color="primary"
-                      onClick={this.createBooking}
+                      onClick={this.createInvoice}
                       className={classes.button}
                     >
                       Create Booking

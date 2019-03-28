@@ -1,23 +1,33 @@
 import React from 'react';
 import EmployeeAppBar from './EmployeeAppBar';
+import API_CALL from '../api_call';
 
 class Analytics extends React.Component {
 
-    getBookingsMadeThisMonth = () => {
+    getBookingsMadeThisMonth = async () => {
         // TODO:
         // API Call
+        let apiCall = API_CALL + '/getBookingsMadeThisMonth';
+        let response = await fetch(apiCall);
+        let body = response.json();
         return 32;
     }
 
-    getAverageInvoiceAmountThisMonth = () => {
+    getAverageInvoiceAmountThisMonth = async () => {
         // TODO: 
         // API Call
+        let apiCall = API_CALL + '/averageInvoiceAmountPerMOnth';
+        let response = await fetch(apiCall);
+        let body = response.json();
         return 231;
     }
 
-    getLoyalCustomers = () => {
+    getLoyalCustomers = async () => {
         // TODO: 
         // API Call
+        let apiCall = API_CALL + '/getLoyalCustomers';
+        let response = await fetch(apiCall);
+        let body = response.json();
         return ([
             {
                 fName: 'John',

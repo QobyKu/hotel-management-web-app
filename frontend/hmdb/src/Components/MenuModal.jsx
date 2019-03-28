@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import API_CALL from '../api_call';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -44,9 +45,39 @@ class MenuModal extends React.Component {
     this.setState({ open: false });
   };
 
-  editPrice = () => {
-    // TODO:
-    // call API to add to invoice
+  state = {
+    open: false,
+    itemName: '',
+    serviceName: '',
+    price: 0
+  };
+
+  updateValue = (evt) =>{
+    this.setState({
+      [evt.target.id]: evt.target.value
+    })
+  }
+
+  editPrice = async () => {
+    let apiCall = API_CALL + 'editPrice';
+
+    await fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "itemName": this.state.itemName,
+        "serviceName": this.state.serviceName,
+        "price": this.state.price
+      })
+    });
+
+    alert('Price has changed');
+
+    window.location.reload();
+
   }
 
   render() {
@@ -64,9 +95,17 @@ class MenuModal extends React.Component {
           <div style={getModalStyle()} className={classes.paper}>
           <Typography>Edit Price</Typography>
           <TextField
-            id="iid"
-            label="Item ID"
-            type="number"
+            id="itemName"
+            label="Item Name"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="serviceName"
+            label="Service Name"
+            type="text"
             InputLabelProps={{
               shrink: true,
             }}
