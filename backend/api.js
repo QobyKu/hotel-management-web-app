@@ -154,6 +154,7 @@ app.post('/removeCard', function (req, res) {
     
 });
 
+
 // Update Password
 // http://localhost:6969/updatePassword
 app.post('/updatePassword', function (req, res) {
@@ -162,8 +163,8 @@ app.post('/updatePassword', function (req, res) {
     var customer_id = req.body.customerId;
     var password = req.body.password;
 
-    connection.query('UPDATE DopeHotel.Customer SET Password = '+password+'WHERE cid = '
-    +customer_id, function (error, results, fields) {
+    connection.query(`UPDATE DopeHotel.Customer SET Password = '${password}' WHERE cid = 
+    '${customer_id}';`, function (error, results, fields) {
         if (error) throw error;
         res.end(results);
     });
@@ -172,6 +173,8 @@ app.post('/updatePassword', function (req, res) {
     
 });
 
+
+
 // Invoice
 // http://localhost:6969/invoice
 app.get('/invoice/customerId/:customerId', function (req, res) {
@@ -179,8 +182,8 @@ app.get('/invoice/customerId/:customerId', function (req, res) {
 
     var customer_id = req.body.customerId;
 
-    connection.query('SELECT Invoice.IID, Invoice.totalPrice, Invoice.Status FROM DopeHotel.Booking, DopeHotel.Customer, DopeHotel.Invoice WHERE Booking.CID = '
-    +customer_id+'AND Booking.IID = Invoice.IID', function (error, results, fields) {
+    connection.query(`SELECT Invoice.IID, Invoice.totalPrice, Invoice.Status FROM DopeHotel.Booking, DopeHotel.Customer, DopeHotel.Invoice WHERE Booking.CID = 
+    '${customer_id}'AND Booking.IID = Invoice.IID';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -188,6 +191,8 @@ app.get('/invoice/customerId/:customerId', function (req, res) {
     connection.end();
     
 });
+
+
 
 // Get All Invoices
 // http://localhost:6969/getAllInvoices
