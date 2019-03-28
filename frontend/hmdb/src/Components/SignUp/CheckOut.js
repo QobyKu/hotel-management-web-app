@@ -61,7 +61,7 @@ class Checkout extends React.Component {
 
 
   signUpAPI = async () => {
-    let apiCall = API_CALL + '/signup';
+    let apiCall = API_CALL + 'signup';
 
     let rawResponse = await fetch(apiCall, {
       method: 'POST',

@@ -74,7 +74,7 @@ class Menu extends React.Component {
     }
 
     getItemsByService = async (type) => {
-        let apiCall = API_CALL + 'listItemsByService/type=' + type;
+        let apiCall = API_CALL + 'listItemsByService/type/' + type;
 
         let response = await fetch(apiCall);
         let data = response.json();

@@ -52,7 +52,7 @@ class CustomerInvoices extends React.Component {
     }
 
     getCustomerInvoices = async () => {
-        let apiCall = API_CALL + 'invoice/customerId=' + localStorage.getItem('customerId');
+        let apiCall = API_CALL + 'invoice/customerId/' + localStorage.getItem('customerId');
 
         let response = await fetch(apiCall);
         let body = response.json();

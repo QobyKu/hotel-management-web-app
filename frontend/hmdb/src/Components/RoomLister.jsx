@@ -44,7 +44,7 @@ class RoomLister extends React.Component {
     }
 
     getRoomsAPI = async (x) => {
-        let apiCall = API_CALL + 'findRooms/numPeople=' + x.numPeople + '/startDate=' + x.startDate + '/endDate=' + x.endDate;
+        let apiCall = API_CALL + 'findRooms/numPeople/' + x.numPeople + '/startDate/' + x.startDate + '/endDate/' + x.endDate;
 
         let response = await fetch(apiCall);
 

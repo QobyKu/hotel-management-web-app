@@ -57,7 +57,7 @@ class SimpleModal extends React.Component {
 
 
   addToInvoice = async () => {
-    let apiCall = API_CALL + '/addItemToInvoice/iid=' + this.state.iid + '/serviceName=' + this.state.sid + '/itemName=' + this.state.itemName;
+    let apiCall = API_CALL + '/addItemToInvoice/iid/' + this.state.iid + '/serviceName/' + this.state.sid + '/itemName/' + this.state.itemName;
 
     await fetch(apiCall);
     alert('Item has been added');

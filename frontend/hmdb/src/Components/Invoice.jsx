@@ -30,7 +30,7 @@ class Invoice extends React.Component {
     }
 
     payInvoice = async () => {
-        let apiCall = API_CALL + '/changeInvoiceStatus/iid=' + this.props.iid;
+        let apiCall = API_CALL + '/changeInvoiceStatus/iid/' + this.props.iid;
         let response = await fetch(apiCall);
         this.render();
     }
