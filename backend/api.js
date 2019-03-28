@@ -51,12 +51,11 @@ app.post('/signup', function (req, res) {
     var password = req.body.password;
     var name = req.body.name;
     var phone_number = req.body.phoneNumber;
-    var city = req.body.city;
     var street_address = req.body.stAddress;
     var zip_code = req.body.zipCode;
 
 
-    connection.query(` INSERT INTO Customer(Name, PhoneNumber, City, StAddress, ZipCode, UserName, Password) VALUES ('${name}', '${phone_number}', '${city}', '${street_address}', '${zip_code}', '${user_name}', '${password}'); `, function (error, results, fields) {
+    connection.query(` INSERT INTO Customer(Name, PhoneNumber, StAddress, ZipCode, UserName, Password) VALUES ('${name}', '${phone_number}', '${street_address}', '${zip_code}', '${user_name}', '${password}'); `, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
