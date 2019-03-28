@@ -7,18 +7,25 @@ const mysql = require('mysql');
 
 // https://github.com/mysqljs/mysql
 const connection = mysql.createConnection({
-    // TODO
-    host: 'localhost',
-    // TODO
-    user: 'root',
-    // TODO
-    password: 'password',
-    // TODO
-    database: 'DopeHotel'
+    host: 'sql3.freemysqlhosting.net',
+    user: 'sql3285727',
+    password: 'L7LryKqvKD',
+    database: 'sql3285727'
 });
 
 // Initialize the app
 const app = express();
+
+app.get('/test', function (req, res) {
+    connection.connect();
+
+    connection.query(`SELECT * FROM abc`, function (error, results) {
+        if(error) throw error;
+        res.send(results);
+    });
+
+    connection.end();
+});
 
 // login
 // http://localhost:6969/login
