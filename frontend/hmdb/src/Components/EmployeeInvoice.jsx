@@ -1,6 +1,6 @@
 import React from 'react';
-import ButtonAppBar from './ButtonAppBar';
 import Invoice from './Invoice';
+import EmployeeAppBar from './EmployeeAppBar';
 
 class EmployeeInvoice extends React.Component {
 
@@ -54,7 +54,7 @@ class EmployeeInvoice extends React.Component {
     render() {
         return (
             <div>
-                <ButtonAppBar />
+                <EmployeeAppBar />
                 <h2> IID &nbsp; PRICE &nbsp; STATUS &nbsp; </h2>
                 {
                     this.state.invoices.map((invoice, i) => {
