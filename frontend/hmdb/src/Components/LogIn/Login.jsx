@@ -74,7 +74,7 @@ class SignIn extends React.Component {
   loginAPI = async () => {
     let apiCall = API_CALL + 'login/username/' + this.state.username + '/password/' + this.state.password;
     let response = await fetch(apiCall);
-    let body = await response.json();
+    // let body = await response.json();
     // console.log(body);
     // TODO:
     // set customer ID in local storage
