@@ -8,31 +8,17 @@ const mysql = require('mysql');
 // https://github.com/mysqljs/mysql
 const connection = mysql.createConnection({
     // TODO
-    host: '',
+    host: 'localhost',
     // TODO
-    user: '',
+    user: 'root',
     // TODO
-    password: '',
+    password: 'password',
     // TODO
-    database: ''
+    database: 'DopeHotel'
 });
 
 // Initialize the app
 const app = express();
-
-// https://expressjs.com/en/guide/routing.html
-app.get('/login', function (req, res) {
-    connection.connect();
-
-    connection.query('SELECT * Customer WHERE Customer.cid = ' + req.username , function (error, results, fields) {
-        if (error) throw error;
-        res.send(results);
-    });
-
-    console.log('API has been called');
-
-    connection.end();
-});
 
 // login
 // http://localhost:6969/login
@@ -42,8 +28,8 @@ app.get('/login/username/:username/password/:password', function (req, res) {
     var user_name = req.params.username;
     var password = req.params.password;
 
-    connection.query('SELECT cid FROM DopeHotel.Customer WHERE Customer.UserName = '
-    +user_name+'AND Customer.Password = ' +password, function (error, results, fields) {
+    connection.query(`SELECT cid FROM DopeHotel.Customer WHERE Customer.UserName =
+    '${user_name}' AND Customer.Password = '${password}';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -277,4 +263,3 @@ app.get('/getLoyalCustomers', function (req, res) {
 app.listen(6969, () => {
     console.log('Go to http://localhost:6969/posts to see posts');
 });
-
