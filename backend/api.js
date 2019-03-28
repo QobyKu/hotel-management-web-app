@@ -35,8 +35,8 @@ app.get('/login/username/:username/password/:password', function (req, res) {
     var user_name = req.params.username;
     var password = req.params.password;
 
-    connection.query(`SELECT cid FROM DopeHotel.Customer WHERE Customer.UserName =
-    '${user_name}' AND Customer.Password = '${password}';`, function (error, results, fields) {
+    connection.query(`SELECT cid FROM DopeHotel.Customer WHERE Customer.UserName = '
+    ${user_name}' AND Customer.Password = '${password}';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -106,7 +106,7 @@ app.post('/makeBooking', function (req, res) {
 
 // List Items By Service
 // http://localhost:6969/listItemsByService
-app.get('/listItemsByService/serviceName/;serviceName', function (req, res) {
+app.get('/listItemsByService/serviceName/:serviceName', function (req, res) {
     connection.connect();
 
     var service_name = req.body.serviceName;
@@ -154,7 +154,6 @@ app.post('/removeCard', function (req, res) {
     
 });
 
-
 // Update Password
 // http://localhost:6969/updatePassword
 app.post('/updatePassword', function (req, res) {
@@ -173,8 +172,6 @@ app.post('/updatePassword', function (req, res) {
     
 });
 
-
-
 // Invoice
 // http://localhost:6969/invoice
 app.get('/invoice/customerId/:customerId', function (req, res) {
@@ -183,7 +180,7 @@ app.get('/invoice/customerId/:customerId', function (req, res) {
     var customer_id = req.body.customerId;
 
     connection.query(`SELECT Invoice.IID, Invoice.totalPrice, Invoice.Status FROM DopeHotel.Booking, DopeHotel.Customer, DopeHotel.Invoice WHERE Booking.CID = 
-    '${customer_id}'AND Booking.IID = Invoice.IID';`, function (error, results, fields) {
+    '${customer_id}' AND Booking.IID = Invoice.IID';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -191,8 +188,6 @@ app.get('/invoice/customerId/:customerId', function (req, res) {
     connection.end();
     
 });
-
-
 
 // Get All Invoices
 // http://localhost:6969/getAllInvoices
@@ -258,6 +253,75 @@ app.get('/getLoyalCustomers', function (req, res) {
     connection.query('SELECT c.Name FROM DopeHotel.Customer c WHERE NOT EXISTS (SELECT * FROM DopeHotel.RoomType rt WHERE NOT EXISTS (SELECT b.BID FROM DopeHotel.Booking b, DopeHotel.Room r WHERE b.CID = c.CID AND rt.Name = r.RoomType AND r.RoomNumber = b.RoomNumber));', function (error, results, fields) {
         if (error) throw error;
         res.send(results);
+    });
+
+    connection.end();
+    
+});
+
+// Change Invoice Status
+// http://localhost:6969/changeInvoiceStatus
+app.post('/changeInvoiceStatus', function (req, res) {
+    connection.connect();
+
+    var invoice_id = req.body.IID;
+
+    connection.query(`UPDATE DopeHotel.Invoice SET Status = 'Paid' WHERE iid = '${invoice_id}';`, function (error, results, fields) {
+        if (error) throw error;
+        res.end(results);
+    });
+
+    connection.end();
+    
+});
+
+// Add Item To Invoice
+// http://localhost:6969/addItemToInvoice
+app.post('/addItemToInvoice', function (req, res) {
+    connection.connect();
+
+    var invoice_id = req.body.IID;
+    var service_name = req.body.serviceName;
+    var item_name = req.body.itemname;
+
+    connection.query(`INSERT INTO DopeHotel.InvoiceLine VALUES ('${invoice_id}', '${service_name}', '${item_name}');`, function (error, results, fields) {
+        if (error) throw error;
+        res.end(results);
+    });
+
+    connection.end();
+    
+});
+
+// Edit Item Price
+// http://localhost:6969/editPrice
+app.post('/editPrice', function (req, res) {
+    connection.connect();
+
+    var item_name = req.body.itemName;
+    var service_name = req.body.serviceName;
+    var price = req.body.newPrice;
+
+    connection.query(`UPDATE DopeHotel.Item SET Price = '${price}', WHERE ItemName = '${item_name}' AND ServiceName = '${service_name}';`, function (error, results, fields) {
+        if (error) throw error;
+        res.end(results);
+    });
+
+    connection.end();
+    
+});
+
+// Edit Room Price
+// http://localhost:6969/editRoomPrice
+app.post('/editRoomPrice', function (req, res) {
+    connection.connect();
+
+    var room_type_name = req.body.roomTypeName;
+    var price = req.body.newPrice;
+
+    connection.query(`UPDATE DopeHotel.RoomType SET Price = '${price}' WHERE Name = '${room_type_name}';`, function (error, results, fields) {
+        if (error) throw error;
+        res.end(results);
     });
 
     connection.end();
