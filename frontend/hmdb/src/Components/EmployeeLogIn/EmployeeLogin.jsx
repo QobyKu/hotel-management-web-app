@@ -138,14 +138,14 @@ class empLogin extends React.Component {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.printOutput}>
+            <Link to={{ pathname: '/employeeDashboard', state: this.state }} onClick= {this.printOutput}>
             <Button
               type="submit"
               fullWidth
               variant="outlined"
               color="primary"
               className={classes.submit}
-              onClick={this.handleSignIn}
+              onClick={this.setLocalStorageOnLogin}
             >
               Sign in
             </Button>

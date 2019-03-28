@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 
+
 const styles = {
   card: {
     maxWidth: 345,
@@ -18,9 +19,20 @@ const styles = {
   },
 };
 
+
 //TODO: add images
-function Room(props) {
-  const { classes } = props;
+class Room extends React.Component {
+
+  state = {
+    startDate: this.props.parentData.startDate,
+    endDate: this.props.parentData.endDate,
+    numPeople: this.props.parentData.numPeople,
+    roomType: this.props.name
+  }
+  
+
+  render(){
+    const { classes } = this.props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -31,21 +43,21 @@ function Room(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
+            {this.props.name}
           </Typography>
           <Typography variant="h6" component="h2">
-            <i>${props.price} per night</i>
+            <i>${this.props.price} per night</i>
           </Typography>
           <Typography component="p">
-            Number of guests: {props.numPeople}
+            Number of guests: {this.props.numPeople}
           </Typography>
           <Typography component="p">
-            Number of beds: {props.numBeds}
+            Number of beds: {this.props.numBeds}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link to="/orderSummary">
+        <Link to={{ pathname: '/orderSummary', state: this.state }}>
         <Button size="small" color="primary">
           Book
         </Button>
@@ -53,6 +65,7 @@ function Room(props) {
       </CardActions>
     </Card>
   );
+}
 }
 
 

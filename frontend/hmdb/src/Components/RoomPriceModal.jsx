@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import API_CALL from '../api_call';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -44,9 +45,36 @@ class RoomPriceModal extends React.Component {
     this.setState({ open: false });
   };
 
-  editPrice = () => {
-    // TODO:
-    // call API to add to invoice
+  state = {
+    open: false,
+    roomType: '',
+    price: ''
+  };
+
+  updateValue = (evt) =>{
+    this.setState({
+      [evt.target.id]: evt.target.value
+    })
+  }
+
+  editPrice = async () => {
+    let apiCall = API_CALL + 'editRoomPrice';
+
+    await fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "roomType": this.state.roomType,
+        "price": this.state.price
+      })
+    });
+
+    alert('Price has changed');
+
+    window.location.reload();
   }
 
   render() {

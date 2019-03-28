@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
 import { Link } from 'react-router-dom';
+import API_CALL from '../../api_call';
 
 const styles = theme => ({
   appBar: {
@@ -59,6 +60,31 @@ class Checkout extends React.Component {
   };
 
 
+  signUpAPI = async () => {
+    let apiCall = API_CALL + '/signup';
+
+    let rawResponse = await fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "username": this.state.username,
+        "password": this.state.password,
+        "name": this.state.custname,
+        "phone": this.state.phone,
+        "city": this.state.city,
+        "address": this.state.address,
+        "zip": this.state.zip
+      })
+    });
+
+    let response = await rawResponse.json();
+    console.log(response);
+
+  }
+
   updateValue = (evt) =>{
     
     // console.log(evt.target.name)
@@ -68,7 +94,7 @@ class Checkout extends React.Component {
   };
 
   handleSubmit = (evt) =>{
-    console.log(this.state);
+    this.signUpApi();
   }
 
   render() {

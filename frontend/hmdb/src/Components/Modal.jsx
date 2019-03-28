@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import API_CALL from '../api_call';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -35,6 +36,9 @@ const styles = theme => ({
 class SimpleModal extends React.Component {
   state = {
     open: false,
+    iid: '',
+    sid: '',
+    itemName: ''
   };
 
   handleOpen = () => {
@@ -45,9 +49,20 @@ class SimpleModal extends React.Component {
     this.setState({ open: false });
   };
 
-  addToInvoice = () => {
-    // todo
-    // call API to add to invoice
+  updateValue = (evt) =>{
+    this.setState({
+      [evt.target.id]: evt.target.value
+    })
+  }
+
+
+  addToInvoice = async () => {
+    let apiCall = API_CALL + '/addItemToInvoice/iid=' + this.state.iid + '/serviceName=' + this.state.sid + '/itemName=' + this.state.itemName;
+
+    await fetch(apiCall);
+    alert('Item has been added');
+    window.location.reload();
+
   }
 
   render() {
@@ -65,17 +80,25 @@ class SimpleModal extends React.Component {
           <div style={getModalStyle()} className={classes.paper}>
           <Typography>Add Item To Invoice</Typography>
           <TextField
+            id="iid"
+            label="IID"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
             id="sid"
             label="Service ID"
-            type="number"
+            type="text"
             InputLabelProps={{
               shrink: true,
             }}
           />
             <TextField
-            id="iid"
-            label="Item ID"
-            type="number"
+            id="itemName"
+            label="Item Name"
+            type="text"
             InputLabelProps={{
               shrink: true,
             }}
