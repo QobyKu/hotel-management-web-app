@@ -15,6 +15,7 @@ const connection = mysql.createConnection({
 
 // Initialize the app
 const app = express();
+app.use(express.json());
 
 app.get('/test/cid/:cid', function (req, res) {
     let x = req.params.cid;
@@ -43,21 +44,23 @@ app.get('/login/username/:username/password/:password', function (req, res) {
 // signup
 // http://localhost:6969/signup
 app.post('/signup', function (req, res) {
-    connection.connect();
+
+    console.log(req.body);
 
     var user_name = req.body.username;
     var password = req.body.password;
     var name = req.body.name;
     var phone_number = req.body.phoneNumber;
-    var city = req.body.name;
+    var city = req.body.city;
     var street_address = req.body.stAddress;
     var zip_code = req.body.zipCode;
 
-    connection.query(` INSERT INTO DopeHotel.Customer(Name, PhoneNumber, City, StAddress, ZipCode, UserName, Password) VALUES ('${name}', '${phone_number}', '${city}', '${street_address}', '${zip_code}', '${user_name}', '${password}'); `, function (error, results, fields) {
+
+    connection.query(` INSERT INTO Customer(Name, PhoneNumber, City, StAddress, ZipCode, UserName, Password) VALUES ('${name}', '${phone_number}', '${city}', '${street_address}', '${zip_code}', '${user_name}', '${password}'); `, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-    connection.end();
+
 });
 
 // Find Rooms
