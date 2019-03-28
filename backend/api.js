@@ -16,33 +16,28 @@ const connection = mysql.createConnection({
 // Initialize the app
 const app = express();
 
-app.get('/test', function (req, res) {
-    connection.connect();
-
-    connection.query(`SELECT * FROM abc`, function (error, results) {
+app.get('/test/cid/:cid', function (req, res) {
+    let x = req.params.cid;
+    console.log(x);
+    connection.query(`SELECT * FROM Customer WHERE Customer.UserName='${x}';`, function (error, results) {
         if(error) throw error;
         res.send(results);
     });
-
-    connection.end();
 });
 
 // login
 // http://localhost:6969/login
 app.get('/login/username/:username/password/:password', function (req, res) {
-    connection.connect();
 
     var user_name = req.params.username;
     var password = req.params.password;
 
-    connection.query(`SELECT cid FROM DopeHotel.Customer WHERE Customer.UserName = '
-    ${user_name}' AND Customer.Password = '${password}';`, function (error, results, fields) {
+    console.log(user_name);
+    console.log(password);
+    connection.query(`SELECT cid FROM Customer WHERE Customer.UserName = '${user_name}' AND Customer.Password = '${password}';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // signup
