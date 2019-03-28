@@ -3,6 +3,8 @@ import Item from './Item';
 import ButtonAppBar from '../ButtonAppBar';
 import './menu.css';
 import Button from '@material-ui/core/Button';
+import API_CALL from '../../api_call';
+
 class Menu extends React.Component {
 
     state = {
@@ -10,7 +12,7 @@ class Menu extends React.Component {
         mockData: true
     }
 
-    selectData = (x) => {
+    selectData = () => {
         if (this.state.mockData) {
             this.setState({
                 items: [
@@ -58,16 +60,29 @@ class Menu extends React.Component {
         } else {
             // API call goes here + use x
             // set state 
+            // do nothing actually
         }
     }
 
     componentWillMount() {
-        let x = this.props.location.state;
-        console.log(x);
-        this.selectData(x);
+        this.selectData();
     }
 
+    handleClick = (event) => {
+        let type = event.target.id;
+        this.getItemsByService(type);
+    }
 
+    getItemsByService = async (type) => {
+        let apiCall = API_CALL + 'listItemsByService/type/' + type;
+
+        let response = await fetch(apiCall);
+        let data = response.json();
+        console.log(data);
+        //TODO:
+        // set state based on data
+        this.render();
+    }
 
     render() {
         return (
@@ -77,39 +92,44 @@ class Menu extends React.Component {
             <div className= "buttoncontainer">
             <Button
               halfWidth
+              id="restaurant"
               variant="outlined"
               color="primary"
-              onClick = {this.handleRegister}
+              onClick = {this.handleClick}
               className = "menubutton">
               Restaurant
             </Button><Button
               halfWidth
+              id="roomService"
               variant="outlined"
               color="primary"
-              onClick = {this.handleRegister}
+              onClick = {this.handleClick}
               className = "menubutton">
               Room Service
             </Button><Button
               halfWidth
+              id="spa"
               variant="outlined"
               color="primary"
-              onClick = {this.handleRegister}
+              onClick = {this.handleClick}
               className = "menubutton">
               Spa
             </Button>
             <Button
               halfWidth
+              id="bar"
               variant="outlined"
               color="primary"
-              onClick = {this.handleRegister}
+              onClick = {this.handleClick}
               className = "menubutton">
               Bar
             </Button>
             <Button
               halfWidth
+              id="casino"
               variant="outlined"
               color="primary"
-              onClick = {this.handleRegister}
+              onClick = {this.handleClick}
               className = "menubutton">
               Casino
             </Button>

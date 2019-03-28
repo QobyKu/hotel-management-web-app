@@ -14,6 +14,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Hotel from '@material-ui/icons/Hotel';
 // import './index.css';
 import { Link } from 'react-router-dom';
+import API_CALL from '../../api_call';
 
 const styles = theme => ({
   main: {
@@ -70,6 +71,15 @@ class SignIn extends React.Component {
     password: ''
   }
 
+  loginAPI = async () => {
+    let apiCall = API_CALL + 'login/username/' + this.state.username + '/password/' + this.state.password;
+    let response = await fetch(apiCall);
+    let body = await response.json();
+    // console.log(body);
+    // TODO:
+    // set customer ID in local storage
+  }
+
   // handleRegister =(evt)=> {
   //   console.log(this.state.username);
   //   console.log(this.state.password);
@@ -85,14 +95,13 @@ class SignIn extends React.Component {
   }
 
   handleSignIn = (evt) =>{
+    this.loginAPI();
+    localStorage.setItem('logInStatus', true);
+    localStorage.setItem('status', 'customer');
     console.log('sign in');
   }
 
-  setLocalStorageOnLogin = () =>{
-    console.log('I have been pressed');
-    localStorage.setItem('logInStatus', true);
-    localStorage.setItem('status', 'customer');
-  }
+
 
 
 
@@ -127,7 +136,7 @@ class SignIn extends React.Component {
               label="Remember me"
             />
 
-          <Link to={{ pathname: '/register', state: this.state }} onClick= {this.setLocalStorageOnLogin}>
+          <Link to={{ pathname: '/register', state: this.state }}>
             <Button
               fullWidth
               variant="outlined"
@@ -137,7 +146,7 @@ class SignIn extends React.Component {
               Register
             </Button>
             </Link>
-            <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.setLocalStorageOnLogin}>
+            <Link to={{ pathname: '/dashboard', state: this.state }} onClick= {this.handleSignIn}>
             <Button
               type="submit"
               fullWidth

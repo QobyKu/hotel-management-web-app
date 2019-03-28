@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import SimpleModalWrapped from './Modal';
+import API_CALL from '../api_call';
 
 
 class Invoice extends React.Component {
@@ -28,11 +29,10 @@ class Invoice extends React.Component {
         }
     }
 
-    payInvoice = () => {
-        // TODO:
-        // refresh page
-        // API Call
-        // this.props.status = "paid";
+    payInvoice = async () => {
+        let apiCall = API_CALL + '/changeInvoiceStatus/iid/' + this.props.iid;
+        let response = await fetch(apiCall);
+        this.render();
     }
 
     render() {

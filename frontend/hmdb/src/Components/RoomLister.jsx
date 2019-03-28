@@ -1,5 +1,7 @@
 import React from 'react';
 import Room from './Room';
+import API_CALL from '../api_call';
+import ButtonAppBar from './ButtonAppBar';
 
 class RoomLister extends React.Component {
 
@@ -33,10 +35,24 @@ class RoomLister extends React.Component {
                 ]
             });
         } else {
-            // TODO:
-            // API call goes here + use x
-            // set state 
+            let r = this.getRoomsAPI(x);
+
+            this.setState({
+                roomTypes: r
+            });
         }
+    }
+
+    getRoomsAPI = async (x) => {
+        let apiCall = API_CALL + 'findRooms/numPeople/' + x.numPeople + '/startDate/' + x.startDate + '/endDate/' + x.endDate;
+
+        let response = await fetch(apiCall);
+
+        let data = await response.json();
+
+        console.log(data);
+        return data;
+
     }
 
     componentWillMount() {
@@ -50,6 +66,7 @@ class RoomLister extends React.Component {
     render() {
         return (
             <div>
+                <ButtonAppBar />
                 <div className="imgContainer">
                     {/* nice image goes here */}
                     <img alt="Vancouver" src="https://stmed.net/sites/default/files/vancouver-wallpapers-28962-2594432.jpg" />
@@ -62,6 +79,7 @@ class RoomLister extends React.Component {
                             price={room.price}
                             numPeople={room.numPeople}
                             numBeds={room.numBeds}
+                            parentData={this.props.location.state}
                         />
                     })
                 }

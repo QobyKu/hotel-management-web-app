@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
 import ButtonAppBar from '../ButtonAppBar';
+import API_CALL from '../../api_call';
 
 const styles = theme => ({
   appBar: {
@@ -90,8 +91,51 @@ class Account extends React.Component {
     console.log(this.state);
   }
 
-  changePassword = (evt) =>{
-    console.log(this.state);
+  changePassword = async (evt) =>{
+    let apiCall = API_CALL + 'updatePassword';
+    let response = fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "customerId": localStorage.getItem('customerId'),
+        "newPassword": this.state.password
+      })
+    });
+    alert('Password has been updated!');
+  }
+
+  changeCard = async (evt) =>{
+    let apiCall = API_CALL + 'updateCard';
+    let response = fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "customerId": localStorage.getItem('customerId'),
+        "newPassword": this.state.creditcard
+      })
+    });
+    alert('Card has been updated');
+  }
+
+  removeCard = async (evt) =>{
+    let apiCall = API_CALL + 'removeCard';
+    let response = fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "customerId": localStorage.getItem('customerId'),
+      })
+    });
+    alert('Card has been removed');
   }
 
 
@@ -138,7 +182,7 @@ class Account extends React.Component {
                   <Button
                       variant="contained"
                       color="primary"
-                      onClick={this.clearPayment}
+                      onClick={this.removeCard}
                       className={classes.button}
                     >
                       Clear Payment Method
@@ -146,7 +190,7 @@ class Account extends React.Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={this.changePayment}
+                      onClick={this.changeCard}
                       className={classes.button}
                     >
                       Change Payment Method

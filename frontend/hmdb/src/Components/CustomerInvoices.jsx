@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonAppBar from './ButtonAppBar';
 import Invoice from './Invoice';
+import API_CALL from '../api_call';
 
 class CustomerInvoices extends React.Component {
 
@@ -42,13 +43,23 @@ class CustomerInvoices extends React.Component {
                     ]
             })
         } else {
-            // TODO:
-            // API Call here
+           this.getCustomerInvoices();
         }
     }
 
     componentWillMount() {
         this.getData();
+    }
+
+    getCustomerInvoices = async () => {
+        let apiCall = API_CALL + 'invoice/customerId/' + localStorage.getItem('customerId');
+
+        let response = await fetch(apiCall);
+        let body = response.json();
+        console.log(body);
+
+        // TODO:
+        // update state 
     }
 
     render() {

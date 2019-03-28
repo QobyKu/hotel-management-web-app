@@ -1,6 +1,7 @@
 import React from 'react';
 import Invoice from './Invoice';
 import EmployeeAppBar from './EmployeeAppBar';
+import API_CALL from '../api_call';
 
 class EmployeeInvoice extends React.Component {
 
@@ -42,9 +43,20 @@ class EmployeeInvoice extends React.Component {
                     ]
             })
         } else {
-            // TODO:
-            // API Call here
+            this.getAllInvoices();
         }
+    }
+
+
+    getAllInvoices = async () => {
+        let apiCall = API_CALL + 'getAllInvoices';
+
+        let response = await fetch(apiCall);
+        let body = response.json();
+        console.log(body);
+
+        // TODO:
+        // update state 
     }
 
     componentWillMount() {
