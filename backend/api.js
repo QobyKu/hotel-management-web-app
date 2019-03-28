@@ -51,14 +51,11 @@ app.post('/signup', function (req, res) {
     var street_address = req.body.stAddress;
     var zip_code = req.body.zipCode;
 
-    connection.query('INSERT INTO DopeHotel.Customer(Name, PhoneNumber, City, StAddress, ZipCode, UserName, Password) VALUES ('+name+
-    ', '+phone_number+', '+city+', '+street_address+', '+zip_code+', '+user_name+', '+password+')', function (error, results, fields) {
+    connection.query(` INSERT INTO DopeHotel.Customer(Name, PhoneNumber, City, StAddress, ZipCode, UserName, Password) VALUES ('${name}', '${phone_number}', '${city}', '${street_address}', '${zip_code}', '${user_name}', '${password}'); `, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-
     connection.end();
-    
 });
 
 // Find Rooms
@@ -70,8 +67,7 @@ app.get('/findRooms/numPeople/:numPeople/startDate/:startDate/endDate/:endDate',
     var start_date = req.params.startDate;
     var end_date = req.params.endDate;
 
-    connection.query('SELECT rt.Name FROM DopeHotel.RoomType rt, DopeHotel.Room r, DopeHotel.booking b WHERE rt.Name = r.RoomType AND r.RoomNumber = b.RoomNumber AND '
-    +start_date+'> b.endDate AND '+end_date+'< StartingDate AND '+number_of_people+'<= rt.NumberOfPeople', function (error, results, fields) {
+    connection.query(`SELECT rt.Name FROM DopeHotel.RoomType rt, DopeHotel.Room r, DopeHotel.booking b WHERE rt.Name = r.RoomType AND r.RoomNumber = b.RoomNumber AND '${start_date}'> b.endDate AND '${end_date}'< StartingDate AND '${number_of_people}'<= rt.NumberOfPeople`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -92,8 +88,7 @@ app.post('/makeBooking', function (req, res) {
     var customer_id = req.body.customerId;
     var invoice_id = req.body.IID;
 
-    connection.query('INSERT INTO DopeHotel.Booking(StartingDate, EndDate, RoomNumber, NumberOfPeople, CID, IID) VALUES ('+starting_date+', '+end_date+', '+room_number+', '
-    +number_of_people+', '+customer_id+', '+invoice_id+')', function (error, results, fields) {
+    connection.query(`INSERT INTO DopeHotel.Booking(StartingDate, EndDate, RoomNumber, NumberOfPeople, CID, IID) VALUES ('${starting_date}', '${end_date}', '${room_number}', '${number_of_people}', '${customer_id}', '${invoice_id}');`, function (error, results, fields) {
         if (error) throw error;
         res.end('yes');
     });
@@ -109,8 +104,7 @@ app.get('/listItemsByService/serviceName/;serviceName', function (req, res) {
 
     var service_name = req.body.serviceName;
 
-    connection.query('SELECT * FROM DopeHotel.Service s, DopeHotel.Item i WHERE s.ServiceName = i.ServiceName AND s.ServiceName = '
-    +service_name, function (error, results, fields) {
+    connection.query(`SELECT * FROM DopeHotel.Service s, DopeHotel.Item i WHERE s.ServiceName = i.ServiceName AND s.ServiceName = '${service_name}';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -127,8 +121,7 @@ app.post('/updateCard', function (req, res) {
     var customer_id = req.body.customerId;
     var card_number = req.body.cardNumber;
 
-    connection.query('UPDATE Customer SET DopeHotel.CardNumber = '+card_number+'WHERE cid = '
-    +customer_id, function (error, results, fields) {
+    connection.query(`UPDATE Customer SET DopeHotel.CardNumber = '${card_number}' WHERE cid = '${customer_id}';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
@@ -144,8 +137,8 @@ app.post('/removeCard', function (req, res) {
 
     var customer_id = req.body.customerId;
 
-    connection.query("UPDATE Customer SET DopeHotel.CardNumber = '' WHERE cid = "
-    +customer_id, function (error, results, fields) {
+    connection.query(`UPDATE Customer SET DopeHotel.CardNumber = '' WHERE cid =
+    '${customer_id}'`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
