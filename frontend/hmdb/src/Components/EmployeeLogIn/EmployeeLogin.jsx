@@ -156,7 +156,6 @@ class empLogin extends React.Component {
       </div>
     );
   }
-
 }
 
 empLogin.propTypes = {
