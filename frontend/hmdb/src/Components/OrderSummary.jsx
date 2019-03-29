@@ -31,16 +31,31 @@ class OrderSummary extends React.Component {
           })
         });
       
-        let response = rawResponse.json();
-        this.createBooking(response.iid);
+        let response = await rawResponse.json();
+        let roomNum = await this.getRoomNumber();
+        console.log(response[0].iid);
+        console.log(roomNum);
+        this.setState({
+          "price": response[0].TotalPrice
+        });
+        this.createBooking(response[0].iid, roomNum);
+    
       
       }
       
-      // TODO: /getRoomNumber
+      getRoomNumber = async () => {
+        let apiCall = API_CALL + 'getRoomNumber/roomType/' + this.props.location.state.roomType;
+        console.log('rt' + this.props.location.state.roomType);
+        let response = await fetch(apiCall);
+        let body = await response.json();
+        console.log(body[0].RoomNumber);
+        return body[0].RoomNumber;
+      }
       
-      createBooking = async (iid) => {
+      createBooking = async (iid, roomNum) => {
         let apiCall = API_CALL + 'makeBooking';
-        let rawResponse = fetch(apiCall, {
+        console.log(localStorage.getItem('customerId'));
+        let rawResponse = await fetch(apiCall, {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -50,15 +65,20 @@ class OrderSummary extends React.Component {
             "startDate": this.props.location.state.startDate,
             "endDate": this.props.location.state.endDate,
             "numPeople": this.props.location.state.numPeople,
-            "iid": iid,
-            "cid": localStorage.getItem('customerId'),
-            "roomNumber": 0,
+            "IID": iid,
+            "customerId": localStorage.getItem('customerId'),
+            "roomNumber": roomNum,
           })
         });
 
-        let response = rawResponse.json();
-        // TODO:
-        // set state based on response
+        let response = await rawResponse.json();
+        console.log(response);
+        this.setState({
+          bookingId: response.insertId,
+          roomType: this.props.location.state.roomType,
+          startDate: this.props.location.state.startDate,
+          endDate: this.props.location.state.endDate,          
+        });
       }
 
       
@@ -90,7 +110,7 @@ class OrderSummary extends React.Component {
             <div>
                 <ButtonAppBar />
                 <h1>Thank you for completing your booking with us {this.state.customerName} !</h1>
-                <h2>Your booking ID is: {this.state.bookingId}. <br/> A confirmation has been sent to {this.state.customerContact}</h2>
+                <h2>Your booking ID is: {this.state.bookingId}.</h2>
                 <h3>You have booked a {this.state.roomType} room from {this.state.startDate} to {this.state.endDate}</h3>
                 <h3>Your invoice total is ${this.state.price}</h3>
                 <Link to="/dashboard">

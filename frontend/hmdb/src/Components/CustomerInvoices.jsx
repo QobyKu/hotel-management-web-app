@@ -7,7 +7,7 @@ class CustomerInvoices extends React.Component {
 
     state = {
         invoices: [],
-        mockData: true
+        mockData: false
     }
 
     getData = () => {
@@ -55,11 +55,14 @@ class CustomerInvoices extends React.Component {
         let apiCall = API_CALL + 'invoice/customerId/' + localStorage.getItem('customerId');
 
         let response = await fetch(apiCall);
-        let body = response.json();
+        let body = await response.json();
         console.log(body);
 
         // TODO:
         // update state 
+        this.setState({
+            invoices: body
+        })
     }
 
     render() {
@@ -71,9 +74,9 @@ class CustomerInvoices extends React.Component {
                     this.state.invoices.map((invoice, i) => {
                         return <Invoice 
                         key={i}
-                            iid = {invoice.iid}
-                            price = {invoice.price}
-                            status = {invoice.status}
+                            iid = {invoice.IID}
+                            price = {invoice.totalPrice}
+                            status = {invoice.Status}
                             />
                     })
                 }

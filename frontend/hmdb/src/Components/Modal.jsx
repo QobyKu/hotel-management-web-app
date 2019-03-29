@@ -56,14 +56,31 @@ class SimpleModal extends React.Component {
   }
 
 
-  addToInvoice = async () => {
-    let apiCall = API_CALL + '/addItemToInvoice/iid/' + this.state.iid + '/serviceName/' + this.state.sid + '/itemName/' + this.state.itemName;
+  signUpAPI = async () => {
+    let apiCall = API_CALL + 'signup';
 
-    await fetch(apiCall);
-    alert('Item has been added');
-    window.location.reload();
+    let rawResponse = await fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "username": this.state.username,
+        "password": this.state.password,
+        "name": this.state.custname,
+        "phone": this.state.phone,
+        "city": this.state.city,
+        "address": this.state.address,
+        "zip": this.state.zip
+      })
+    });
+
+    let response = await rawResponse.json();
+    console.log(response);
 
   }
+
 
   render() {
     const { classes } = this.props;

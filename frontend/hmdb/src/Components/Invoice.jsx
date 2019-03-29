@@ -30,10 +30,25 @@ class Invoice extends React.Component {
     }
 
     payInvoice = async () => {
-        let apiCall = API_CALL + '/changeInvoiceStatus/iid/' + this.props.iid;
-        let response = await fetch(apiCall);
-        this.render();
-    }
+    let apiCall = API_CALL + 'changeInvoiceStatus';
+
+    let rawResponse = await fetch(apiCall, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "IID": this.props.iid
+      })
+    });
+
+    let response = await rawResponse.json();
+    console.log(response);
+
+    // window.location.reload();
+
+  }
 
     render() {
         return(

@@ -159,7 +159,7 @@ class SignIn extends React.Component {
               Sign in
             </Button>
             </Link>
-            <Link to={{ pathname: '/employeelogin', state: this.state }} onClick= {this.setLocalStorageOnLogin}>
+            <Link to={{ pathname: '/employeelogin', state: this.state }}>
             <Button
               type="submit"
               fullWidth
