@@ -160,16 +160,22 @@ app.get('/invoice/customerId/:customerId', function (req, res) {
 // Get All Invoices
 // http://localhost:6969/getAllInvoices
 app.get('/getAllInvoices', function (req, res) {
-    connection.connect();
-
     connection.query('SELECT * FROM Invoice', function (error, results, fields) {
         if (error) throw error;
         res.send(results);
-    });
-
-    connection.end();
-    
+    });    
 });
+
+// Get All Items
+// http://localhost:6969/getAllItems
+app.get('/getAllItems', function (req, res) {
+    connection.query('SELECT * FROM Item', function (error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+    });    
+});
+
+
 
 // Get All Room Types
 // http://localhost:6969/getAllRoomTypes
@@ -230,53 +236,40 @@ app.get('/getLoyalCustomers', function (req, res) {
 // Change Invoice Status
 // http://localhost:6969/changeInvoiceStatus
 app.post('/changeInvoiceStatus', function (req, res) {
-    connection.connect();
-
     var invoice_id = req.body.IID;
 
-    connection.query(`UPDATE Invoice SET Status = 'Paid' WHERE iid = '${invoice_id}';`, function (error, results, fields) {
+    connection.query(`UPDATE Invoice SET Invoice.Status = 'Paid' WHERE Invoice.iid = '${invoice_id}';`, function (error, results, fields) {
         if (error) throw error;
-        res.end(results);
-    });
-
-    connection.end();
-    
+        res.send(results);
+    });   
 });
 
 // Add Item To Invoice
 // http://localhost:6969/addItemToInvoice
 app.post('/addItemToInvoice', function (req, res) {
-    connection.connect();
-
     var invoice_id = req.body.IID;
     var service_name = req.body.serviceName;
-    var item_name = req.body.itemname;
+    var item_name = req.body.itemName;
+
+    console.log(req.body);
 
     connection.query(`INSERT INTO InvoiceLine VALUES ('${invoice_id}', '${service_name}', '${item_name}');`, function (error, results, fields) {
         if (error) throw error;
-        res.end(results);
+        res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Edit Item Price
 // http://localhost:6969/editPrice
 app.post('/editPrice', function (req, res) {
-    connection.connect();
-
     var item_name = req.body.itemName;
     var service_name = req.body.serviceName;
     var price = req.body.newPrice;
 
-    connection.query(`UPDATE Item SET Price = '${price}', WHERE ItemName = '${item_name}' AND ServiceName = '${service_name}';`, function (error, results, fields) {
+    connection.query(`UPDATE Item SET Price = '${price}' WHERE name = '${item_name}' AND ServiceName = '${service_name}'; `, function (error, results, fields) {
         if (error) throw error;
-        res.end(results);
+        res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Edit Room Price
