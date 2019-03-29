@@ -7,11 +7,11 @@ import { API_CALL }  from '../api_call';
 class Invoice extends React.Component {
 
     renderButton = (status) => {
-        if(status === "paid") {
+        if(status === "Paid") {
             return(
                 <Button disabled>Paid</Button>
             );
-        } else if (status === "unpaid") {
+        } else if (status === "Unpaid" || status === null) {
             return (
                 <Button onClick={this.payInvoice}> Pay </Button>
             )
@@ -46,7 +46,7 @@ class Invoice extends React.Component {
     let response = await rawResponse.json();
     console.log(response);
 
-    // window.location.reload();
+    window.location.reload();
 
   }
 
