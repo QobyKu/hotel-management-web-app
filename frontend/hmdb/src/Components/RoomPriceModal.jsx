@@ -67,8 +67,8 @@ class RoomPriceModal extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "roomType": this.state.roomType,
-        "price": this.state.price
+        "roomTypeName": this.state.roomType,
+        "newPrice": this.state.price
       })
     });
 
@@ -95,6 +95,7 @@ class RoomPriceModal extends React.Component {
             id="roomType"
             label="Room Type"
             type="text"
+            onChange={this.updateValue}
             InputLabelProps={{
               shrink: true,
             }}
@@ -103,6 +104,7 @@ class RoomPriceModal extends React.Component {
             id="price"
             label="New Price"
             type="number"
+            onChange={this.updateValue}
             InputLabelProps={{
               shrink: true,
             }}

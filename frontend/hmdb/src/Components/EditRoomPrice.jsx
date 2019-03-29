@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RoomPriceModalWrapped from './RoomPriceModal';
 import EmployeeAppBar from './EmployeeAppBar';
+import { API_CALL }  from '../api_call';
 
 const styles = theme => ({
     root: {
@@ -48,7 +49,31 @@ const roomTypes = [
 ]
 
 
-class EditMenuPrice extends React.Component {
+class EditRoomPrice extends React.Component {
+
+    state = {
+        rooms: [],
+        mockData: false
+    }
+
+    selectData = async () => {
+        // API call goes here + use x
+        // set state 
+        // do nothing actually
+        let apiCall = API_CALL + 'getAllRoomTypes';
+
+        let response = await fetch(apiCall);
+        let data = await response.json();
+        console.log(data);
+        this.setState({
+            rooms: data
+        });
+}
+
+    componentWillMount() {
+        this.selectData();
+    }
+    
 
     render() {
         const { classes } = this.props;
@@ -67,18 +92,18 @@ class EditMenuPrice extends React.Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {roomTypes.map(roomType => (
-                                <TableRow key={roomType.name}>
+                            {this.state.rooms.map(roomType => (
+                                <TableRow key={roomType.Name}>
                                     <TableCell component="th" scope="row">
-                                        {roomType.name}
+                                        {roomType.Name}
                                     </TableCell>
                                     <TableCell component="th" align="right" scope="row">
-                                        {roomType.numPeople}
+                                        {roomType.NumberOfPeople}
                                     </TableCell>
                                     <TableCell component="th" align="right" scope="row">
-                                        {roomType.numBeds}
+                                        {roomType.NumberOfBeds}
                                     </TableCell>
-                                    <TableCell align="right">${roomType.price}</TableCell>
+                                    <TableCell align="right">${roomType.Price}</TableCell>
                                     <TableCell align="right"><RoomPriceModalWrapped /></TableCell>
                                 </TableRow>
                             ))}
@@ -91,4 +116,4 @@ class EditMenuPrice extends React.Component {
 }
 
 
-export default withStyles(styles)(EditMenuPrice);
+export default withStyles(styles)(EditRoomPrice);
