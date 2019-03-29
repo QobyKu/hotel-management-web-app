@@ -9,6 +9,7 @@ class Menu extends React.Component {
 
     state = {
         items: [],
+        services: [],
         mockData: false
     }
 
@@ -69,6 +70,11 @@ class Menu extends React.Component {
         this.getItemsByService(type);
     }
 
+
+    componentWillMount(){
+        this.getAllServices();
+    }
+
     getItemsByService = async (type) => {
         console.log(type);
         let apiCall = API_CALL + 'listItemsByService/serviceName/' + type;
@@ -76,12 +82,24 @@ class Menu extends React.Component {
         let response = await fetch(apiCall);
         let data = await response.json();
         console.log(data);
-        //TODO:
-        // set state based on data
         this.setState({
             items: data
         })
         this.render();
+    }
+
+    getAllServices = async () => {
+        let apiCall = API_CALL + 'getAllServices';
+    
+        let response = await fetch(apiCall);
+        let data = await response.json();
+        console.log(data);
+        
+        this.setState({
+            services: data
+        });
+
+        console.log(this.state.services);
     }
 
 
@@ -91,46 +109,16 @@ class Menu extends React.Component {
                 <ButtonAppBar />
 
             <div className= "buttoncontainer">
-            <Button
-              id="Restaurant"
-              variant="outlined"
-              color="primary"
-              onClick = {this.handleClick}
-              className = "menubutton"
-              >
-              Restaurant
-            </Button><Button
-              id="roomService"
-              variant="outlined"
-              color="primary"
-              onClick = {this.handleClick}
-              className = "menubutton">
-              Room Service
-            </Button><Button
-              id="spa"
-              variant="outlined"
-              color="primary"
-              onClick = {this.handleClick}
-              className = "menubutton">
-              Spa
-            </Button>
-            <Button
-              id="bar"
-              variant="outlined"
-              color="primary"
-              onClick = {this.handleClick}
-              className = "menubutton">
-              Bar
-            </Button>
-            <Button
-              halfWidth
-              id="casino"
-              variant="outlined"
-              color="primary"
-              onClick = {this.handleClick}
-              className = "menubutton">
-              Casino
-            </Button>
+            {this.state.services.map((button, i) => {
+                return <Button
+                key={i}
+                id={button.ServiceName}
+                variant="outlined"
+                color="primary"
+                onClick = {this.handleClick}
+                className = "menubutton"
+                >{button.ServiceName}</Button>
+            })}
             </div>
             <div className="itemcontainer">
                 {
