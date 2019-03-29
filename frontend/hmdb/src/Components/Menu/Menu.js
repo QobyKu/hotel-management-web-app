@@ -138,9 +138,9 @@ class Menu extends React.Component {
                     this.state.items.map((item, i) => {
                         return <Item
                             key={i}
-                            name={item.name}
-                            price={item.price}
-                            service={item.service}
+                            name={item.Name}
+                            price={item.Price}
+                            service={item.ServiceName}
                         />
                     })
                 }
