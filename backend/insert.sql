@@ -93,7 +93,7 @@ CREATE TABLE Item (
 CREATE TABLE Invoice (
   IID varchar(45) NOT NULL,
   TotalPrice int(11) DEFAULT NULL,
-  Status varchar(45) DEFAULT NULL,
+  Status varchar(45) DEFAULT 'Unpaid',
   PRIMARY KEY (IID)
 );
 
