@@ -7,7 +7,7 @@ class EmployeeInvoice extends React.Component {
 
     state = {
         invoices: [],
-        mockData: true
+        mockData: false
     }
 
     getData = () => {
@@ -52,11 +52,12 @@ class EmployeeInvoice extends React.Component {
         let apiCall = API_CALL + 'getAllInvoices';
 
         let response = await fetch(apiCall);
-        let body = response.json();
+        let body = await response.json();
         console.log(body);
 
-        // TODO:
-        // update state 
+        this.setState({
+            invoices: body
+        })
     }
 
     componentWillMount() {
@@ -72,9 +73,9 @@ class EmployeeInvoice extends React.Component {
                     this.state.invoices.map((invoice, i) => {
                         return <Invoice 
                             key={i}
-                            iid = {invoice.iid}
-                            price = {invoice.price}
-                            status = {invoice.status}
+                            iid = {invoice.IID}
+                            price = {invoice.TotalPrice}
+                            status = {invoice.Status}
                             />
                     })
                 }

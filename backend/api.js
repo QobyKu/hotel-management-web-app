@@ -191,6 +191,14 @@ app.get('/getAllItems', function (req, res) {
     });    
 });
 
+// Get All Items
+// http://localhost:6969/getAllServices
+app.get('/getAllServices', function (req, res) {
+    connection.query('SELECT * FROM Service', function (error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+    });    
+});
 
 
 // Get All Room Types
