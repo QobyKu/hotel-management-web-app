@@ -141,7 +141,7 @@ app.post('/updateCard', function (req, res) {
 app.post('/removeCard', function (req, res) {
     var customer_id = req.body.customerId;
 
-    connection.query(`UPDATE Customer SET CardNumber = '' WHERE cid =
+    connection.query(`UPDATE Customer SET CardNumber = null WHERE cid =
     '${customer_id}'`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);

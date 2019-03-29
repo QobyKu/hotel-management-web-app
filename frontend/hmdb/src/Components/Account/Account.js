@@ -101,7 +101,7 @@ class Account extends React.Component {
       },
       body: JSON.stringify({
         "customerId": localStorage.getItem('customerId'),
-        "newPassword": this.state.password
+        "password": this.state.password
       })
     });
     alert('Password has been updated!');
@@ -109,7 +109,8 @@ class Account extends React.Component {
 
   changeCard = async (evt) =>{
     let apiCall = API_CALL + 'updateCard';
-    let response = fetch(apiCall, {
+    console.log(this.state);
+    let response = await fetch(apiCall, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -117,9 +118,11 @@ class Account extends React.Component {
       },
       body: JSON.stringify({
         "customerId": localStorage.getItem('customerId'),
-        "newPassword": this.state.creditcard
+        "cardNumber": this.state.creditcard
       })
     });
+    let data = await response.json();
+    console.log(data);
     alert('Card has been updated');
   }
 
