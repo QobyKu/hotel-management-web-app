@@ -59,9 +59,10 @@ class MenuModal extends React.Component {
   }
 
   editPrice = async () => {
+    console.log(this.state);
     let apiCall = API_CALL + 'editPrice';
 
-    await fetch(apiCall, {
+    let rawResponse = await fetch(apiCall, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -70,13 +71,18 @@ class MenuModal extends React.Component {
       body: JSON.stringify({
         "itemName": this.state.itemName,
         "serviceName": this.state.serviceName,
-        "price": this.state.price
+        "newPrice": this.state.price
       })
     });
 
     alert('Price has changed');
 
+    let response = await rawResponse.json();
+    console.log(response);
+
     window.location.reload();
+    
+    
 
   }
 
@@ -98,6 +104,7 @@ class MenuModal extends React.Component {
             id="itemName"
             label="Item Name"
             type="text"
+            onChange = {this.updateValue}
             InputLabelProps={{
               shrink: true,
             }}
@@ -106,6 +113,7 @@ class MenuModal extends React.Component {
             id="serviceName"
             label="Service Name"
             type="text"
+            onChange = {this.updateValue}
             InputLabelProps={{
               shrink: true,
             }}
@@ -114,6 +122,7 @@ class MenuModal extends React.Component {
             id="price"
             label="New Price"
             type="number"
+            onChange = {this.updateValue}
             InputLabelProps={{
               shrink: true,
             }}
