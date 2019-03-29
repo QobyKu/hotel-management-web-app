@@ -38,7 +38,9 @@ class EmployeeAppBar extends React.Component {
                         onClick={this.logOut}
                         style={{
                             position: "absolute",
-                            right: 20
+                            right: 20,
+                            color: 'white',
+                            top: 15
                         }}>Logout</Button></Link>
                 </Toolbar>
             );

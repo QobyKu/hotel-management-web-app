@@ -53,7 +53,7 @@ class Invoice extends React.Component {
     render() {
         return(
             <div>
-                <h2>{this.props.iid} ${this.props.price} {this.renderButton(this.props.status)} {this.renderAdd()}</h2>
+                <h2>{this.props.iid} ${this.props.price} {this.renderButton(this.props.status)}</h2>
             </div>
         )
     }
