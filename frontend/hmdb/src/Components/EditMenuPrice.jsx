@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { API_CALL }  from '../api_call';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -19,6 +20,8 @@ const styles = theme => ({
         minWidth: 700,
     },
 });
+
+
 
 const menu = [
     {
@@ -57,6 +60,32 @@ const menu = [
 
 class EditMenuPrice extends React.Component {
 
+    state = {
+        menu: [],
+        mockData: false
+    }
+
+    selectData = async () => {
+            // API call goes here + use x
+            // set state 
+            // do nothing actually
+            let apiCall = API_CALL + 'getAllItems';
+
+            let response = await fetch(apiCall);
+            let data = await response.json();
+            console.log(data);
+            //TODO:
+            // set state based on data
+            this.setState({
+                menu: data
+            });
+    }
+
+    componentWillMount() {
+        this.selectData();
+    }
+        
+
     render() {
         const { classes } = this.props;
         return (
@@ -66,7 +95,6 @@ class EditMenuPrice extends React.Component {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell>IID</TableCell>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">Service</TableCell>
                                 <TableCell align="right">Price</TableCell>
@@ -74,16 +102,13 @@ class EditMenuPrice extends React.Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {menu.map(item => (
+                            {this.state.menu.map(item => (
                                 <TableRow key={item.iid}>
                                     <TableCell component="th" scope="row">
-                                        {item.iid}
+                                        {item.Name}
                                     </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {item.name}
-                                    </TableCell>
-                                    <TableCell align="right">{item.service}</TableCell>
-                                    <TableCell align="right">${item.price}</TableCell>
+                                    <TableCell align="right">{item.ServiceName}</TableCell>
+                                    <TableCell align="right">${item.Price}</TableCell>
                                     <TableCell align="right"><MenuModalWrapped /></TableCell>
                                 </TableRow>
                             ))}

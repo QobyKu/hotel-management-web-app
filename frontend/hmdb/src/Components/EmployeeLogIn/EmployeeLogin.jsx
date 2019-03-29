@@ -98,10 +98,6 @@ class empLogin extends React.Component {
     console.log(this.state.password);
   }
 
-  handleSignIn = (evt) =>{
-    console.log('sign in');
-  }
-
   printOutput = (evt) =>{
     console.log('link pressed');
   }

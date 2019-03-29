@@ -166,7 +166,6 @@ class SignIn extends React.Component {
               variant="outlined"
               color="primary"
               className={classes.submit}
-              onClick={this.handleSignIn}
             >
               Employee Log In
             </Button>
