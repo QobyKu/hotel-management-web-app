@@ -42,11 +42,6 @@ function Item(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Order
-        </Button>
-      </CardActions>
     </Card>
   );
 }

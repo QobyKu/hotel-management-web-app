@@ -78,7 +78,6 @@ class MenuModal extends React.Component {
     alert('Price has changed');
 
     let response = await rawResponse.json();
-    console.log(response);
 
     window.location.reload();
     

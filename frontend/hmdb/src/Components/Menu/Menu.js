@@ -8,8 +8,8 @@ import { API_CALL }  from '../../api_call';
 class Menu extends React.Component {
 
     state = {
-        roomTypes: [],
-        mockData: true
+        items: [],
+        mockData: false
     }
 
     selectData = () => {
@@ -64,25 +64,26 @@ class Menu extends React.Component {
         }
     }
 
-    componentWillMount() {
-        this.selectData();
-    }
-
     handleClick = (event) => {
-        let type = event.target.id;
+        let type = event.currentTarget.id;
         this.getItemsByService(type);
     }
 
     getItemsByService = async (type) => {
-        let apiCall = API_CALL + 'listItemsByService/type/' + type;
+        console.log(type);
+        let apiCall = API_CALL + 'listItemsByService/serviceName/' + type;
 
         let response = await fetch(apiCall);
-        let data = response.json();
+        let data = await response.json();
         console.log(data);
         //TODO:
         // set state based on data
+        this.setState({
+            items: data
+        })
         this.render();
     }
+
 
     render() {
         return (
@@ -91,15 +92,14 @@ class Menu extends React.Component {
 
             <div className= "buttoncontainer">
             <Button
-              halfWidth
-              id="restaurant"
+              id="Restaurant"
               variant="outlined"
               color="primary"
               onClick = {this.handleClick}
-              className = "menubutton">
+              className = "menubutton"
+              >
               Restaurant
             </Button><Button
-              halfWidth
               id="roomService"
               variant="outlined"
               color="primary"
@@ -107,7 +107,6 @@ class Menu extends React.Component {
               className = "menubutton">
               Room Service
             </Button><Button
-              halfWidth
               id="spa"
               variant="outlined"
               color="primary"
@@ -116,7 +115,6 @@ class Menu extends React.Component {
               Spa
             </Button>
             <Button
-              halfWidth
               id="bar"
               variant="outlined"
               color="primary"
