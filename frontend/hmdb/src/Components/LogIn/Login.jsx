@@ -14,7 +14,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Hotel from '@material-ui/icons/Hotel';
 // import './index.css';
 import { Link } from 'react-router-dom';
-import API_CALL from '../../api_call';
+import { API_CALL } from '../../api_call';
 
 const styles = theme => ({
   main: {
@@ -73,11 +73,12 @@ class SignIn extends React.Component {
 
   loginAPI = async () => {
     let apiCall = API_CALL + 'login/username/' + this.state.username + '/password/' + this.state.password;
+    console.log(API_CALL);
     let response = await fetch(apiCall);
-    // let body = await response.json();
-    // console.log(body);
+    let body = await response.json();
+    console.log(body);
     // TODO:
-    // set customer ID in local storage
+    localStorage.setItem('customerId', body[0].cid)
   }
 
   // handleRegister =(evt)=> {

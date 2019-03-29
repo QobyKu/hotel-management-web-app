@@ -1,6 +1,6 @@
 import React from 'react';
 import EmployeeAppBar from './EmployeeAppBar';
-import API_CALL from '../api_call';
+import { API_CALL }  from '../api_call';
 
 class Analytics extends React.Component {
 

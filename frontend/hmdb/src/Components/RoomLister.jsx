@@ -1,6 +1,6 @@
 import React from 'react';
 import Room from './Room';
-import API_CALL from '../api_call';
+import { API_CALL }  from '../api_call';
 import ButtonAppBar from './ButtonAppBar';
 
 class RoomLister extends React.Component {

@@ -1,1 +1,1 @@
-const API_CALL = 'localhost:6969/';
+export const API_CALL = 'http://localhost:6969/';

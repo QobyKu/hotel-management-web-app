@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import SimpleModalWrapped from './Modal';
-import API_CALL from '../api_call';
+import { API_CALL }  from '../api_call';
 
 
 class Invoice extends React.Component {

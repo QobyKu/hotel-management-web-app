@@ -15,7 +15,10 @@ const connection = mysql.createConnection({
 
 // Initialize the app
 const app = express();
+var cors = require('cors');
 app.use(express.json());
+
+app.use(cors());
 
 app.get('/test/cid/:cid', function (req, res) {
     let x = req.params.cid;
@@ -279,5 +282,5 @@ app.post('/editRoomPrice', function (req, res) {
 
 // Start the server
 app.listen(6969, () => {
-    console.log('Go to http://localhost:6969/posts to see posts');
+    console.log('Go to http://localhost:6969/ for API calls');
 });

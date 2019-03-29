@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import '../LogIn/index.css';
 import EmployeeAppBar from '../EmployeeAppBar';
-import API_CALL from '../../api_call';
+import { API_CALL }  from '../../api_call';
 
 const styles = theme => ({
   appBar: {

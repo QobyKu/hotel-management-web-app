@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import API_CALL from '../api_call';
+import { API_CALL }  from '../api_call';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

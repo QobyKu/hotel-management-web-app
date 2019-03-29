@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ButtonAppBar from './ButtonAppBar';
-import API_CALL from '../api_call';
+import { API_CALL }  from '../api_call';
 
 class OrderSummary extends React.Component {
 

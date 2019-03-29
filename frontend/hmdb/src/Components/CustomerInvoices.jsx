@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonAppBar from './ButtonAppBar';
 import Invoice from './Invoice';
-import API_CALL from '../api_call';
+import { API_CALL }  from '../api_call';
 
 class CustomerInvoices extends React.Component {
 

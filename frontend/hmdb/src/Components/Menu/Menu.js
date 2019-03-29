@@ -3,7 +3,7 @@ import Item from './Item';
 import ButtonAppBar from '../ButtonAppBar';
 import './menu.css';
 import Button from '@material-ui/core/Button';
-import API_CALL from '../../api_call';
+import { API_CALL }  from '../../api_call';
 
 class Menu extends React.Component {
 

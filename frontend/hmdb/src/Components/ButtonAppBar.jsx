@@ -31,7 +31,6 @@ class ButtonAppBar extends React.Component  {
   }
 
   whatToRender = () => {
-    // TODO: make navbar work for different types of users
     if (this.getStatus()){
       return(
         <Toolbar>
@@ -67,6 +66,7 @@ class ButtonAppBar extends React.Component  {
     console.log('I have logged out');
     localStorage.setItem('logInStatus', false);
     localStorage.setItem('status', '');
+    localStorage.setItem('customerId', '');
   }
 
   getStatus = () => {
