@@ -99,7 +99,8 @@ app.post('/makeBooking', function (req, res) {
 // List Items By Service
 // http://localhost:6969/listItemsByService
 app.get('/listItemsByService/serviceName/:serviceName', function (req, res) {
-    var service_name = req.body.serviceName;
+    var service_name = req.params.serviceName;
+    console.log(service_name);
 
     connection.query(`SELECT * FROM Service s, Item i WHERE s.ServiceName = i.ServiceName AND s.ServiceName = '${service_name}';`, function (error, results, fields) {
         if (error) throw error;
