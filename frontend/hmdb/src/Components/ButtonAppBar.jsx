@@ -34,26 +34,31 @@ class ButtonAppBar extends React.Component  {
     if (this.getStatus()){
       return(
         <Toolbar>
-        <Link to="/dashboard"><Button color="inherit">Dashboard</Button></Link>
-        <Link to="/menu"><Button color="inherit">Menu</Button></Link>
-        <Link to="/customerInvoices"><Button color="inherit">Invoices</Button></Link>
-        <Link to="/login"><Button color="inherit" 
+        <Link to="/dashboard" ><Button style={{color: 'white'}}>Dashboard</Button></Link>
+        <Link to="/menu"><Button style={{color: 'white'}}>Menu</Button></Link>
+        <Link to="/customerInvoices"><Button style={{color: 'white'}}>Invoices</Button></Link>
+        <Link to="/login"><Button
         onClick = {this.logOut}
         style={{
           position: "absolute",
-          right: 20
+          right: 20,
+          color: 'white',
+          top: 15
         }}>Logout</Button></Link>
         <Link to="/account"><Button color="inherit" 
         style={{
           position: "absolute",
-          right: 90
+          right: 90,
+          color: 'white',
+          top: 15
         }}>Account</Button></Link>
       </Toolbar>
       );
     } else {
       return (
         <Toolbar>
-          <Link to="/login"><Button color="inherit">
+          <Link to="/login"><Button color="inherit"
+          style={{color: 'white'}}>
             Login
           </Button>
           </Link>
