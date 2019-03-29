@@ -78,8 +78,6 @@ app.get('/findRooms/numPeople/:numPeople/startDate/:startDate/endDate/:endDate',
 // Make Booking
 // http://localhost:6969/makeBooking
 app.post('/makeBooking', function (req, res) {
-    connection.connect();
-
     var starting_date = req.body.startDate;
     var end_date = req.body.endDate;
     var room_number = req.body.roomNumber;
@@ -91,9 +89,19 @@ app.post('/makeBooking', function (req, res) {
         if (error) throw error;
         res.end('yes');
     });
+});
 
-    connection.end();
-    
+// Make Invoice
+// http://localhost:6969/createInvoice
+app.post('/createInvoice', function (req, res) {
+    var room_type = req.body.roomType;
+    var iid = req.body.IID;
+
+    connection.query(`INSERT INTO Invoice(IID, TotalPrice) 
+    VALUES ('${iid}', (SELECT rt.Price FROM RoomType rt WHERE rt.Name = '${room_type}'));`, function (error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+    });  
 });
 
 // List Items By Service
