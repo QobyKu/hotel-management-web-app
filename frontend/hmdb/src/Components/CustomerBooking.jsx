@@ -57,7 +57,7 @@ class Booking extends React.Component {
             onChange={this.handleChange}
           />
           <Button variant="contained" size="large" color="primary" >
-           <Link to={{ pathname: '/roomLister', state: this.state }} >
+           <Link to={{ pathname: '/roomLister', state: this.state }} style={{color: "white"}} >
             Search
           </Link>
         </Button>

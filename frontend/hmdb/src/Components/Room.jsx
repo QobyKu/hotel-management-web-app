@@ -34,11 +34,16 @@ class Room extends React.Component {
   render(){
     const { classes } = this.props;
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card}
+    style={{
+      float: "left",
+      width: "300px",
+      margin: "5px 10px"
+    }}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="https://www.thegwenchicago.com/wp-content/uploads/2017/07/Guest-Rooms.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>

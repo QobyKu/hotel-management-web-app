@@ -125,7 +125,7 @@ class SignIn extends React.Component {
           </Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <InputLabel htmlFor="email">Username</InputLabel>
               <Input id="username" name="username" autoComplete="email" autoFocus  onChange={this.updateValue}/>
             </FormControl>
             <FormControl margin="normal" required fullWidth>

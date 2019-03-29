@@ -146,6 +146,17 @@ class empLogin extends React.Component {
               Sign in
             </Button>
             </Link>
+            <Link to={{ pathname: '/login', state: this.state }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="primary"
+              className={classes.submit}
+            >
+              Customer Login
+            </Button>
+            </Link>
           </form>
         </Paper>
       </main>

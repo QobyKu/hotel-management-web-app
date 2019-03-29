@@ -225,6 +225,7 @@ class Account extends React.Component {
             id="password"
             name="password"
             label="Password"
+            type="password"
             fullWidth
             autoComplete="pword"
             onChange={this.updateValue}
