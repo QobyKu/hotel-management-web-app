@@ -229,6 +229,16 @@ app.get('/getLoyalCustomers', function (req, res) {
     });
 });
 
+// Get Room Numbers of a Certain Type
+// http://localhost:6969/getRoomNumber
+app.get('/getRoomNumber/roomType/:roomType', function (req, res) {
+    let room_type = req.params.roomType
+    connection.query(`SELECT r.RoomNumber FROM Room r, RoomType rt WHERE rt.Name = '${room_type}' AND r.RoomType = rt.Name`, function (error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+    });
+});
+
 // Change Invoice Status
 // http://localhost:6969/changeInvoiceStatus
 app.post('/changeInvoiceStatus', function (req, res) {

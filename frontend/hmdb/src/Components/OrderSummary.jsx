@@ -7,7 +7,7 @@ import { API_CALL }  from '../api_call';
 class OrderSummary extends React.Component {
 
     state = {
-        mockData: true,
+        mockData: false,
         bookingId: '',
         customerName: '',
         customerContact: '',
@@ -26,7 +26,7 @@ class OrderSummary extends React.Component {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            "customerId": localStorage.getItem('customerId'),
+            "IID": (Math.random()*1000000).toFixed(0).toString(),
             "roomType": this.props.location.state.roomType
           })
         });

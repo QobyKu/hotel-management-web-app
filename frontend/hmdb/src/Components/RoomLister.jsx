@@ -7,7 +7,7 @@ class RoomLister extends React.Component {
 
     state = {
         roomTypes: [],
-        mockData: true
+        mockData: false
     }
 
     selectData = (x) => {
@@ -35,11 +35,7 @@ class RoomLister extends React.Component {
                 ]
             });
         } else {
-            let r = this.getRoomsAPI(x);
-
-            this.setState({
-                roomTypes: r
-            });
+            this.getRoomsAPI(x);
         }
     }
 
@@ -51,7 +47,10 @@ class RoomLister extends React.Component {
         let data = await response.json();
 
         console.log(data);
-        return data;
+        
+        this.setState({
+            roomTypes: data
+        });
 
     }
 
@@ -75,10 +74,10 @@ class RoomLister extends React.Component {
                     this.state.roomTypes.map((room, i) => {
                         return <Room
                             key={i}
-                            name={room.name}
-                            price={room.price}
-                            numPeople={room.numPeople}
-                            numBeds={room.numBeds}
+                            name={room.Name}
+                            price={room.Price}
+                            numPeople={room.NumberOfPeople}
+                            numBeds={room.NumberOfBeds}
                             parentData={this.props.location.state}
                         />
                     })
