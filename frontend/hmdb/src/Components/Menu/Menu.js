@@ -133,7 +133,6 @@ class Menu extends React.Component {
             </Button>
             </div>
             <div className="itemcontainer">
-                
                 {
                     this.state.items.map((item, i) => {
                         return <Item
