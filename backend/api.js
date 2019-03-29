@@ -149,18 +149,12 @@ app.post('/updatePassword', function (req, res) {
 // Invoice
 // http://localhost:6969/invoice
 app.get('/invoice/customerId/:customerId', function (req, res) {
-    connection.connect();
+    var customer_id = req.params.customerId;
 
-    var customer_id = req.body.customerId;
-
-    connection.query(`SELECT Invoice.IID, Invoice.totalPrice, Invoice.Status FROM Booking, Customer, Invoice WHERE Booking.CID = 
-    '${customer_id}' AND Booking.IID = Invoice.IID';`, function (error, results, fields) {
+    connection.query(`SELECT Invoice.IID, Invoice.totalPrice,Invoice.Status FROM Booking, Customer, Invoice WHERE Booking.CID = '${customer_id}' AND Booking.IID = Invoice.IID GROUP BY Invoice.IID;`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
-    });
-
-    connection.end();
-    
+    });   
 });
 
 // Get All Invoices
