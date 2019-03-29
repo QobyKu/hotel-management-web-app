@@ -111,53 +111,39 @@ app.get('/listItemsByService/serviceName/:serviceName', function (req, res) {
 // Update Card
 // http://localhost:6969/updateCard
 app.post('/updateCard', function (req, res) {
-    connection.connect();
-
     var customer_id = req.body.customerId;
     var card_number = req.body.cardNumber;
 
     connection.query(`UPDATE Customer SET CardNumber = '${card_number}' WHERE cid = '${customer_id}';`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
-    });
-
-    connection.end();
-    
+    });    
 });
 
 // Remove Card
 // http://localhost:6969/removeCard
 app.post('/removeCard', function (req, res) {
-    connection.connect();
-
     var customer_id = req.body.customerId;
 
     connection.query(`UPDATE Customer SET CardNumber = '' WHERE cid =
     '${customer_id}'`, function (error, results, fields) {
         if (error) throw error;
         res.send(results);
-    });
-
-    connection.end();
-    
+    });    
 });
 
 // Update Password
 // http://localhost:6969/updatePassword
 app.post('/updatePassword', function (req, res) {
-    connection.connect();
-
     var customer_id = req.body.customerId;
     var password = req.body.password;
 
-    connection.query(`UPDATE Customer SET Password = '${password}' WHERE cid = 
-    '${customer_id}';`, function (error, results, fields) {
-        if (error) throw error;
-        res.end(results);
-    });
+    console.log(req.body);
 
-    connection.end();
-    
+    connection.query(`UPDATE Customer SET Password = '${password}' WHERE cid = '${customer_id}';`, function (error, results, fields){
+        if (error) throw error;
+        res.send(results);
+    });    
 });
 
 // Invoice
