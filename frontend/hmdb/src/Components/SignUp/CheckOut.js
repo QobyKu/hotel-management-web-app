@@ -73,10 +73,9 @@ class Checkout extends React.Component {
         "username": this.state.username,
         "password": this.state.password,
         "name": this.state.custname,
-        "phone": this.state.phone,
-        "city": this.state.city,
-        "address": this.state.address,
-        "zip": this.state.zip
+        "phoneNumber": this.state.phone,
+        "stAddress": this.state.address,
+        "zipCode": this.state.zip
       })
     });
 
@@ -94,7 +93,7 @@ class Checkout extends React.Component {
   };
 
   handleSubmit = (evt) =>{
-    this.signUpApi();
+    this.signUpAPI();
   }
 
   render() {
