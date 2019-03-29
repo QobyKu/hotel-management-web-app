@@ -65,21 +65,33 @@ class Account extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "customerId": this.state.customerid,
+        "IID": (Math.random()*1000000).toFixed(0).toString(),
         "roomType": this.state.roomType
       })
     });
   
-    let response = rawResponse.json();
-    this.createBooking(response.iid);
-  
+    let response = await rawResponse.json();
+    let roomNum = await this.getRoomNumber();
+    console.log(response[0].iid);
+    console.log(roomNum);
+    this.setState({
+      "price": response[0].TotalPrice
+    });
+    this.createBooking(response[0].iid, roomNum);
+  }
+
+  getRoomNumber = async () => {
+    let apiCall = API_CALL + 'getRoomNumber/roomType/' + this.state.roomType;
+    console.log('rt' + this.state.roomType);
+    let response = await fetch(apiCall);
+    let body = await response.json();
+    console.log(body[0].RoomNumber);
+    return body[0].RoomNumber;
   }
   
-  // TODO: /getRoomNumber
-  
-  createBooking = async (iid) => {
+  createBooking = async (iid, roomNum) => {
     let apiCall = API_CALL + 'makeBooking';
-    let rawResponse = fetch(apiCall, {
+    let rawResponse = await fetch(apiCall, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -89,13 +101,14 @@ class Account extends React.Component {
         "startDate": this.state.start,
         "endDate": this.state.end,
         "numPeople": this.state.numPeople,
-        "iid": iid,
-        "cid": this.state.customerid,
-        "roomNumber": 0,
+        "IID": iid,
+        "customerId": this.state.customerid,
+        "roomNumber": roomNum
       })
     });
 
-    console.log('Booking created!');
+    let response = await rawResponse.json();
+    console.log(response);
   }
 
   handleNext = () => {
@@ -137,10 +150,6 @@ class Account extends React.Component {
   }
 
   changePassword = (evt) =>{
-    console.log(this.state);
-  }
-
-  createBooking = (evt) =>{
     console.log(this.state);
   }
   

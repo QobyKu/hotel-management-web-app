@@ -39,8 +39,6 @@ class OrderSummary extends React.Component {
           "price": response[0].TotalPrice
         });
         this.createBooking(response[0].iid, roomNum);
-    
-      
       }
       
       getRoomNumber = async () => {
