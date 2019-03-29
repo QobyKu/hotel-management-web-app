@@ -174,57 +174,37 @@ app.get('/getAllInvoices', function (req, res) {
 // Get All Room Types
 // http://localhost:6969/getAllRoomTypes
 app.get('/getAllRoomTypes', function (req, res) {
-    connection.connect();
-
     connection.query('SELECT * FROM RoomType', function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Get Bookings Made This Month
 // http://localhost:6969/getBookingsMadeThisMonth
 app.get('/getBookingsMadeThisMonth', function (req, res) {
-    connection.connect();
-
     connection.query('SELECT COUNT(*) FROM Booking WHERE MONTH(Booking.StartingDate) = MONTH(NOW())', function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Average Invoice Amount Per Month
 // http://localhost:6969/avgInvoiceAmountPerMonth
 app.get('/avgInvoiceAmountPerMonth', function (req, res) {
-    connection.connect();
-
     connection.query('SELECT AVG(Invoice.TotalPrice) FROM Invoice, Booking WHERE Invoice.IID = Booking.IID AND MONTH(Booking.StartingDate) = MONTH(NOW())', function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Get Loyal Customers
 // http://localhost:6969/getLoyalCustomers
 app.get('/getLoyalCustomers', function (req, res) {
-    connection.connect();
-
     connection.query('SELECT c.Name FROM Customer c WHERE NOT EXISTS (SELECT * FROM RoomType rt WHERE NOT EXISTS (SELECT b.BID FROM Booking b, Room r WHERE b.CID = c.CID AND rt.Name = r.RoomType AND r.RoomNumber = b.RoomNumber));', function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Change Invoice Status
@@ -276,24 +256,19 @@ app.post('/editPrice', function (req, res) {
     });
 
     connection.end();
-    
+
 });
 
 // Edit Room Price
 // http://localhost:6969/editRoomPrice
 app.post('/editRoomPrice', function (req, res) {
-    connection.connect();
-
     var room_type_name = req.body.roomTypeName;
     var price = req.body.newPrice;
 
     connection.query(`UPDATE RoomType SET Price = '${price}' WHERE Name = '${room_type_name}';`, function (error, results, fields) {
         if (error) throw error;
-        res.end(results);
+        res.send(results);
     });
-
-    connection.end();
-    
 });
 
 // Start the server
