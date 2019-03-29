@@ -121,7 +121,6 @@ class Menu extends React.Component {
             })}
             </div>
             <div className="itemcontainer">
-                
                 {
                     this.state.items.map((item, i) => {
                         return <Item
