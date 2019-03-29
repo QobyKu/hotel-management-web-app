@@ -87,7 +87,7 @@ app.post('/makeBooking', function (req, res) {
 
     connection.query(`INSERT INTO Booking(StartingDate, EndDate, RoomNumber, NumberOfPeople, CID, IID) VALUES ('${starting_date}', '${end_date}', '${room_number}', '${number_of_people}', '${customer_id}', '${invoice_id}');`, function (error, results, fields) {
         if (error) throw error;
-        res.end('yes');
+        res.send(results);
     });
 });
 
@@ -100,8 +100,13 @@ app.post('/createInvoice', function (req, res) {
     connection.query(`INSERT INTO Invoice(IID, TotalPrice) 
     VALUES ('${iid}', (SELECT rt.Price FROM RoomType rt WHERE rt.Name = '${room_type}'));`, function (error, results, fields) {
         if (error) throw error;
-        res.send(results);
+        // res.send(results);
     });  
+
+    connection.query(`SELECT i.iid, i.TotalPrice FROM  Invoice i WHERE i.iid = '${iid}';`, function(error, results) {
+        if(error) throw error;
+        res.send(results);
+    });
 });
 
 // List Items By Service
