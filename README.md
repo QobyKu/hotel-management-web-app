@@ -1,1 +1,1 @@
-# CPSC304-Group24-FinalProject
+# Intro to Relational Databases Final Project
